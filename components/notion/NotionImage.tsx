@@ -12,22 +12,30 @@ import ModalImage from "react-modal-image";
 
 // TYPES
 
-interface Props extends global_types.ImageItem {}
+type Props = global_types.ImageItem;
 
 // COMPONENT
 
 const NotionImage = (props: Props) => {
+  let imageUrl = "";
+  if (props.image.type === "external") {
+    imageUrl = props.image.external.url;
+  } else {
+    imageUrl = props.image.file.url;
+  }
+
   const captionString = props.image.caption
     .map((it) => it.plain_text)
     .join(" ");
+
   return (
     <div className={style.container}>
       <ModalImage
         hideDownload={true}
         alt={captionString}
         className={style.img}
-        small={props.image.file.url}
-        large={props.image.file.url}
+        small={imageUrl}
+        large={imageUrl}
       />
       <div className={style.caption}>{captionString}</div>
     </div>

@@ -22,7 +22,7 @@ export const getPageMetaInfo = (page: global_types.PageBase): PageMetaInfo => {
   const createdTime = new Date(page.created_time).toLocaleDateString();
   const lastEditedTime = new Date(page.last_edited_time).toLocaleDateString();
   const icon = page.icon;
-  const coverImgUrl = page.cover.file.url;
+  const coverImgUrl = page.cover && page.cover.file.url;
   const lectureName =
     page.properties.study_lecture && page.properties.study_lecture.select.name;
   return {

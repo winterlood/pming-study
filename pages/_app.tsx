@@ -4,8 +4,8 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }) {
   return (
     <div>
-      <header>
-        <h3>header</h3>
+      <header style={{ textAlign: "center" }}>
+        <h3>UDEMY X DEVSTU</h3>
       </header>
       <Component {...pageProps} />
     </div>

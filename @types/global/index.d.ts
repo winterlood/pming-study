@@ -1,21 +1,23 @@
 declare module "@types" {
   export namespace global_types {
-    interface Database {
-      db: {
-        results: PageBase[];
-      };
-      [Key: string]: any;
+    interface Block {
+      archived: boolean;
+      created_time: string;
+      has_children: boolean;
+      id: string;
+      last_edited_time: string;
+      object: string;
+      type: string;
+      [key: string]: any;
     }
 
-    interface NotionUser {
+    interface NotionUser extends Block {
+      type: "person";
       avatar_url: string;
-      id: string;
       name: string;
-      object: string;
       person: {
         email: string;
       };
-      type: "person";
     }
 
     interface PageBase {
@@ -86,15 +88,33 @@ declare module "@types" {
 
     interface PageDetail {}
 
-    interface Block {
-      archived: boolean;
-      created_time: string;
-      has_children: boolean;
+    interface Lecture extends Block {
+      object: "page";
+      properties: {
+        Name: {
+          id: string;
+          title: TextItemBase[];
+          type: "title";
+        };
+        thumbnail: {
+          id: string;
+          type: "url";
+          url: string;
+        };
+      };
+    }
+
+    interface ProcessedLectureItem {
       id: string;
-      last_edited_time: string;
-      object: string;
-      type: string;
-      [key: string]: any;
+      name: string;
+      thumbnailUrl: string;
+    }
+
+    interface Database {
+      db: {
+        results: PageBase[];
+      };
+      [Key: string]: any;
     }
 
     interface BlockWithChildren extends Block {
@@ -191,16 +211,28 @@ declare module "@types" {
       };
     }
 
-    interface ImageItem extends Block {
-      image: {
-        caption: TextItemBase[];
-        file: {
-          expiry_time: string;
-          url: string;
-        };
-        type: string;
+    interface ImagePropertyBase {
+      caption: TextItemBase[];
+      type: "external" | "file";
+    }
+    interface ImagePropertyWithExternal extends ImagePropertyBase {
+      type: "external";
+      external: {
+        url: string;
       };
     }
+    interface ImagePropertyWithFile extends ImagePropertyBase {
+      type: "file";
+      file: {
+        expiry_time: string;
+        url: string;
+      };
+    }
+    interface ImageItem extends Block {
+      image: ImagePropertyWithExternal | ImagePropertyWithFile;
+    }
+
+    type ImageItem = ImageItemWithExternal | ImageItemWithFile;
 
     interface BulletedListItem extends Block {
       bulleted_list_item: {

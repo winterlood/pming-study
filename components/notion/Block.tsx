@@ -8,7 +8,6 @@ import Heading from "./Heading";
 import NotionImage from "./NotionImage";
 import NumberedListItem from "./NumberedListItem";
 import Paragraph from "./Paragraph";
-
 import style from "./Block.module.scss";
 import Divider from "./Divider";
 import NotionEmbed from "./NotionEmbed";

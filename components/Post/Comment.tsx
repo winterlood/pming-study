@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import useScript from "../hooks/useScript";
+import useScript from "hooks/useScript";
 
 const Comments = () => {
   const comment = useRef(null);

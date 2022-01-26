@@ -1,15 +1,10 @@
 import { global_types } from "@types";
 import React, { useEffect, useState } from "react";
-import Comments from "../../components/Comment";
-import MainLayout from "../../components/MainLayout";
-import { getPageMetaInfo } from "../../lib/client/page";
-import {
-  getBlocks,
-  getPage,
-  getPagesFromDatabase,
-  RetrieveBlock,
-} from "../../lib/notion";
-import Block from "../../NotionComponent/Block";
+import Comments from "components/Post/Comment";
+import MainLayout from "components/MainLayout";
+import { getPageMetaInfo } from "lib/client/page";
+import { getBlocks, getPage, getPagesFromDatabase } from "lib/server/notion";
+import Block from "components/notion/Block";
 import style from "./Post.module.scss";
 
 // ANTD
@@ -28,26 +23,8 @@ type Props = {
 // COMPONENT
 
 const Post = (props: Props) => {
-  // console.log(props);
-  // const [state, setState] = useState<global_types.Block[]>([]);
-
-  // useEffect(() => {
-  //   const localData = localStorage.getItem("blocks");
-  //   if (localData) {
-  //     setState(JSON.parse(localData));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (props.blocks) {
-  //     localStorage.setItem("blocks", JSON.stringify(props.blocks));
-  //   }
-  // }, [props.blocks]);
-
   const { page, blocks } = props;
-
   const pageInfo = getPageMetaInfo(page);
-
   return (
     <div className={style.container}>
       <MainLayout>
@@ -70,11 +47,13 @@ const Post = (props: Props) => {
           </div>
         </div>
         <div className={style.cover_wrapper}>
-          <img src={page.cover.file.url} alt={pageInfo.title} />
+          <img src={pageInfo.coverImgUrl} alt={pageInfo.title} />
         </div>
-        {props.blocks.map((it, idx) => (
-          <Block key={it.id} block={it} />
-        ))}
+        <article>
+          {blocks.map((it, idx) => (
+            <Block key={it.id} block={it} />
+          ))}
+        </article>
         <Comments />
       </MainLayout>
     </div>
@@ -83,7 +62,7 @@ const Post = (props: Props) => {
 
 export const getStaticPaths = async () => {
   const databaseId = process.env.NOTION_DATABASE;
-  const pages = await getPagesFromDatabase(databaseId);
+  const pages = await getPagesFromDatabase();
   return {
     paths: pages.map((page) => ({ params: { id: page.id } })),
     fallback: true,

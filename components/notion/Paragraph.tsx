@@ -1,6 +1,6 @@
 import { global_types } from "@types";
 import React from "react";
-import withChildrenBlock from "../hoc/withChildrenBlock";
+import withChildrenBlock from "hoc/withChildrenBlock";
 import NotionText from "./NotionText";
 import style from "./Paragraph.module.scss";
 

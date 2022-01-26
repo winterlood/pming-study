@@ -1,5 +1,5 @@
 import { ComponentType } from "react";
-import Block from "../NotionComponent/Block";
+import Block from "components/notion/Block";
 
 const withChildrenBlock = (WrappedComponent) => {
   // eslint-disable-next-line react/display-name

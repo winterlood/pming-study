@@ -1,5 +1,33 @@
 .container {
-  padding: 50px;
+  section {
+    margin-bottom: 100px;
+  }
+
+  .section_hero {
+    width: 100vw;
+    height: 360px;
+    .bg {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .section_leture {
+    .lecture_grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 10px;
+      gap: 20px;
+    }
+
+    .add_button_wrapper {
+      .btn_wrapper {
+      }
+    }
+  }
 
   .page_wrapper {
     display: grid;
