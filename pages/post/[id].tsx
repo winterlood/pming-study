@@ -1,5 +1,6 @@
 import { global_types } from "@types";
 import React, { useEffect, useState } from "react";
+import Comments from "../../components/Comment";
 import MainLayout from "../../components/MainLayout";
 import { getPageMetaInfo } from "../../lib/client/page";
 import {
@@ -74,6 +75,7 @@ const Post = (props: Props) => {
         {props.blocks.map((it, idx) => (
           <Block key={it.id} block={it} />
         ))}
+        <Comments />
       </MainLayout>
     </div>
   );
