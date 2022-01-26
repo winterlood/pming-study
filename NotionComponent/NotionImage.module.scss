@@ -1,0 +1,14 @@
+.container {
+  .img {
+    width: 100%;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+  }
+
+  .caption {
+    text-align: center;
+    color: gray;
+    font-size: 14px;
+    min-height: 30px;
+  }
+}

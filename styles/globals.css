@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "bold";
+  src: url("/fonts/SPOQAHANSANSNEO-BOLD.TTF");
+}
+@font-face {
+  font-family: "medium";
+  src: url("/fonts/SPOQAHANSANSNEO-MEDIUM.TTF");
+}
+@font-face {
+  font-family: "regular";
+  src: url("/fonts/SPOQAHANSANSNEO-REGULAR.TTF");
+}
+@font-face {
+  font-family: "light";
+  src: url("/fonts/SPOQAHANSANSNEO-LIGHT.TTF");
+}
+@font-face {
+  font-family: "thin";
+  src: url("/fonts/SPOQAHANSANSNEO-THIN.TTF");
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "regular";
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --font_1: 48px;
+  --font_2: 34px;
+  --font_3: 24px;
+  --font_4: 20px;
+  --font_5: 16px;
+  --font_6: 12px;
+
+  --primary: #5f6ceb;
+
+  --article-max-width: 720px;
+  --article-header-height: 54px;
+
+  /* notion elements */
+  --child-left-margin: 1.5em;
+  --border-color: rgb(228, 227, 226);
+}

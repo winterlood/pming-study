@@ -1,0 +1,14 @@
+.container {
+  margin-left: 0px;
+  padding-left: 0px;
+  list-style: inside;
+  .li {
+    min-height: 30px;
+  }
+  .child {
+    ul {
+      list-style: outside circle;
+    }
+    padding-left: var(--child-left-margin);
+  }
+}

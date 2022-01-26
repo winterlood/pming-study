@@ -1,0 +1,10 @@
+.container {
+  padding: 50px;
+
+  .page_wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-gap: 10px;
+    gap: 10px;
+  }
+}
