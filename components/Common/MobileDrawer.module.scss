@@ -31,10 +31,18 @@
     .link_wrapper {
       padding-top: 10px;
       padding-bottom: 10px;
+      padding: 15px;
+    }
+    .link_wrapper:hover {
+      background-color: var(--gray100);
     }
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
+
+    a {
+      color: black;
+    }
   }
 
   .footer {

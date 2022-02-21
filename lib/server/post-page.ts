@@ -1,5 +1,5 @@
 import { app_types, notion_types } from "@types";
-import { getPage, getPageListFromDatabase, notionClient } from "./notion";
+import { getPage, getPageListFromDatabase } from "./notion";
 import { API_GetStudyPage, API_GetStudyPageList } from "./study-page";
 
 /*

@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import PaddingContainer from "components/Common/PaddingContainer";
 import { useRouter } from "next/router";
 import React, { useCallback } from "react";
 import style from "./StripeBanner.module.scss";

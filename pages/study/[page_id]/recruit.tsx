@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import style from "./recruit.module.scss";
 import PaddingContainer from "components/Common/PaddingContainer";
 import { getWholeBlock } from "lib/server/notion";
@@ -8,8 +8,8 @@ import Comments from "components/Common/Comment";
 import { API_GetRawStudyPage, API_GetStudyPage } from "lib/server/study-page";
 import { getLocaleEndDate } from "lib/client/study";
 import ApplyStudyModal from "components/Study/ApplyStudyModal";
-import { message, Button, Spin } from "antd";
-import { GET_studyApplicant, POST_applyStudy } from "lib/client/api";
+import { message, Button } from "antd";
+import { POST_applyStudy } from "lib/client/api";
 import { useRouter } from "next/router";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import DetailPageHeader from "components/Common/DetailPageHeader";
@@ -52,13 +52,13 @@ const Study = (props: Props) => {
         toggleModal();
       },
       onFail: (err) => {
-        console.log(err);
         message.error({
           content: "스터디 신청에 실패하였습니다 😥",
           style: {
             marginTop: "20vh",
           },
         });
+        toggleModal();
       },
     });
   };

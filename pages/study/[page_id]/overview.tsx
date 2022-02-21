@@ -7,11 +7,7 @@ import PaddingContainer from "components/Common/PaddingContainer";
 import StudyInfoItem from "components/Common/StudyInfoItem";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import { API_GetProcessedPostPageListByStudy } from "lib/server/post-page";
-import {
-  API_GetRawStudyPage,
-  API_getRawStudyPageList,
-  API_GetStudyPage,
-} from "lib/server/study-page";
+import { API_GetStudyPage } from "lib/server/study-page";
 import { useRouter } from "next/router";
 import React from "react";
 import style from "./overview.module.scss";

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { notion_types } from "@types";
 import NotionText from "./NotionText";
 

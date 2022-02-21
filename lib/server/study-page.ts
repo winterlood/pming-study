@@ -1,6 +1,6 @@
 import { app_types, notion_types } from "@types";
 import { convertStringProperty } from "./convert";
-import { getPage, getPageListFromDatabase, notionClient } from "./notion";
+import { getPage, getPageListFromDatabase } from "./notion";
 
 // GET ONE STUDY PAGE
 const getProcssedStudyPage = (

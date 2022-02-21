@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./PostGrid.module.scss";
 import { app_types } from "@types";
-import PostItem from "components/Common/PostItem";
 import ItemGrid from "components/Common/ItemGrid";
-import Tag from "components/Common/Tag";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import Link from "next/link";
 

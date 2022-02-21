@@ -40,14 +40,3 @@ module.exports = withPlugins(
   ],
   nextConfig
 );
-
-// module.exports = withBundleAnalyzer(
-//   withAntdLess({
-//     lessVarsFilePath: "./styles/antd.less",
-//     lessVarsFilePathAppendToEndOfContent: true,
-//     ...nextConfig,
-//     webpack(config) {
-//       return config;
-//     },
-//   })S
-// );

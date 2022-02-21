@@ -1,6 +1,6 @@
 import PaddingContainer from "components/Common/PaddingContainer";
 import Link from "next/link";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import style from "./Header.module.scss";
 import MobileDrawer from "./MobileDrawer";
 
@@ -8,6 +8,7 @@ import { MenuOutlined } from "@ant-design/icons";
 import Image from "next/image";
 
 import BrandLogo from "public/image/pming_study_logo.png";
+import { useRouter } from "next/router";
 // ANTD
 
 // COMPS
@@ -41,6 +42,10 @@ const Header = () => {
 
   const toggleDrawer = useCallback(() => {
     setIsDrawerOpen((v) => !v);
+  }, []);
+
+  const onCloseDrawer = useCallback(() => {
+    setIsDrawerOpen(false);
   }, []);
 
   return (
@@ -79,7 +84,7 @@ const Header = () => {
         </div>
         <MobileDrawer
           isOpen={isDrawerOpen}
-          onClose={toggleDrawer}
+          onClose={onCloseDrawer}
           menuList={MenuList}
         />
       </PaddingContainer>

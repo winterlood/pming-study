@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import ThumbnailImage from "public/image/open_graph_thumbnail.png";
-import Router from "next/router";
 // ANTD
 
 // COMPS

@@ -1,7 +1,6 @@
 import { api_types } from "@types";
-import { Button, Input, Modal, Spin, Tooltip } from "antd";
+import { Button, Input, Modal, Tooltip } from "antd";
 import React, {
-  MutableRefObject,
   ReactNode,
   RefObject,
   useCallback,
@@ -63,7 +62,6 @@ const initialState: State = {
 };
 const ApplyStudyModal = (props: Props) => {
   const [state, setState] = useState<State>(initialState);
-  const [isLoading, setIsLoading] = useState(false);
   const nameRef = useRef<HTMLInputElement>();
   const emailRef = useRef<HTMLInputElement>();
   const phoneNumberRef = useRef<HTMLInputElement>();
@@ -110,11 +108,21 @@ const ApplyStudyModal = (props: Props) => {
     return true;
   };
 
+  let submitFlag = false;
+
+  const submitCheck = () => {
+    if (submitFlag) {
+      return submitFlag;
+    } else {
+      submitFlag = true;
+      return false;
+    }
+  };
+
   const handleSubmit = async () => {
+    if (submitCheck()) return;
     if (isInputValid()) {
-      setIsLoading(() => true);
       await props.onSubmit(state);
-      setIsLoading(() => false);
     }
   };
 
@@ -189,13 +197,9 @@ const ApplyStudyModal = (props: Props) => {
           </ApplyInputWrapper>
         </div>
         <div className={style.submit_warpper}>
-          {isLoading ? (
-            <Spin />
-          ) : (
-            <Button onClick={handleSubmit} type={"primary"}>
-              지원하기
-            </Button>
-          )}
+          <Button onClick={handleSubmit} type={"primary"}>
+            지원하기
+          </Button>
         </div>
       </div>
     </Modal>
