@@ -18,10 +18,10 @@ interface Props extends app_types.ProcessedPageWithStudy {}
 const StudyItem = (props: Props) => {
   const { study_id, study_name, study_status, udemy_lecture_thumbnail_url } =
     props;
-  const link =
-    study_status in ["CLOSE", "INPROGRESS"]
-      ? `study/${study_id}/overview`
-      : `study/${study_id}/recruit`;
+  const link = ["CLOSE", "INPROGRESS"].includes(study_status)
+    ? `study/${study_id}/overview`
+    : `study/${study_id}/recruit`;
+
   return (
     <div className={style.container}>
       <Link href={link} passHref>

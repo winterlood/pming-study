@@ -13,6 +13,9 @@ import { useRouter } from "next/router";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import Tag from "components/Common/Tag";
 import StripeBanner from "components/Home/StripeBanner";
+import Link from "next/link";
+import StudyItem from "components/Common/StudyItem";
+import ItemGrid from "components/Common/ItemGrid";
 
 // TYPES
 
@@ -71,11 +74,24 @@ const Post = (props: Props) => {
         <div className={style.comment_wrapper}>
           <Comments />
         </div>
-        {/* 
+
         <div className={style.related_post_wrapper}>
-          <div className={style.head}>이 스터디의 다른 포스트</div>
-          <div className={style.main}></div>
-        </div> */}
+          <div className={style.head}>
+            이 포스트는
+            <br />
+            <Link href={`study/${page.related_study.id}/overview`} passHref>
+              <a>
+                {'"'}
+                {page.related_study.study_name}
+                {'"'}
+              </a>
+            </Link>
+            &nbsp;스터디의 진행 결과입니다
+          </div>
+          <div className={style.main}>
+            <StudyItem {...page.related_study} />
+          </div>
+        </div>
       </PaddingContainer>
     </div>
   );
@@ -91,15 +107,13 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx) => {
   const { page_id } = ctx.params;
 
-  const [rawPage, page, blocks] = await Promise.all([
-    API_GetRawPostPage(page_id),
+  const [page, blocks] = await Promise.all([
     API_GetProcessedPostPage(page_id),
     getWholeBlock(page_id),
   ]);
 
   return {
     props: {
-      rawPage: rawPage,
       page: page,
       blocks: blocks,
     },

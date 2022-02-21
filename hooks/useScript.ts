@@ -5,8 +5,6 @@ const useScript = (params) => {
 
   const [status, setStatus] = useState(url ? "loading" : "idle");
 
-  console.log(params);
-
   useEffect(() => {
     if (!url) {
       setStatus("idle");
@@ -31,7 +29,6 @@ const useScript = (params) => {
     script.addEventListener("error", setAttributeStatus);
 
     return () => {
-      // useEffect clean up
       if (script) {
         script.removeEventListener("load", setAttributeStatus);
         script.removeEventListener("error", setAttributeStatus);

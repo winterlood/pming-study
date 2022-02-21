@@ -25,51 +25,6 @@ interface Props {
   blocks: notion_types.Block[];
 }
 
-const StudyStat = ({ page }: Partial<Props>) => {
-  const [applicantCount, setApplicantCount] = useState(0);
-
-  const getStudyApplicant = () => {
-    GET_studyApplicant({
-      study_id: page.id,
-      onSuccess: (res) => {
-        setApplicantCount(res.data.length);
-      },
-      onFail: () => {},
-    });
-  };
-
-  useEffect(() => {
-    getStudyApplicant();
-  }, []);
-
-  return (
-    <>
-      <div className={style.info_item}>
-        <span className={style.info_label}>🗓️ 스터디 모집 일정</span>
-        <span className={style.info_value}>
-          {page.study_start_date} ~ {page.study_apply_end_date}
-        </span>
-      </div>
-      <div className={style.info_item}>
-        <span className={style.info_label}>🚨 스터디 대상 강의</span>
-        <span className={style.info_value}>{page.udemy_lecture_name}</span>
-      </div>
-      <div className={style.info_item}>
-        <span className={style.info_label}>🧑‍🏫 스터디 정원</span>
-        <span className={style.info_value}>
-          {page.study_max_member_count}명
-        </span>
-      </div>
-      <div className={style.info_item}>
-        <span className={style.info_label}>🙋‍♂️ 현재 신청자</span>
-        <span className={style.info_value}>
-          {applicantCount ? `${applicantCount}명` : <Spin />}
-        </span>
-      </div>
-    </>
-  );
-};
-
 const Study = (props: Props) => {
   const { page, blocks } = props;
   const router = useRouter();
@@ -141,7 +96,26 @@ const Study = (props: Props) => {
           }
         />
         <section className={style.info_section}>
-          <StudyStat page={page} />
+          <div className={style.info_item}>
+            <span className={style.info_label}>🗓️ 스터디 모집 일정</span>
+            <span className={style.info_value}>
+              {page.study_start_date} ~ {page.study_apply_end_date}
+            </span>
+          </div>
+          <div className={style.info_item}>
+            <span className={style.info_label}>🚨 스터디 대상 강의</span>
+            <span className={style.info_value}>{page.udemy_lecture_name}</span>
+          </div>
+          <div className={style.info_item}>
+            <span className={style.info_label}>🧑‍🏫 스터디 정원</span>
+            <span className={style.info_value}>
+              {page.study_max_member_count}명
+            </span>
+          </div>
+          <div className={style.info_item}>
+            <span className={style.info_label}>🙋‍♂️ 현재 신청자</span>
+            <span className={style.info_value}>{page.apply_count} 명</span>
+          </div>
         </section>
         <section className={style.lecture_info_section}>
           <h3>🌏 스터디와 함께 진행되는 강의</h3>

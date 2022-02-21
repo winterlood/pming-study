@@ -78,8 +78,7 @@ declare module "@types" {
       | "url"
       | "relation"
       | "checkbox"
-      | 'rollup'
-      ;
+      | "rollup";
 
     interface PageProperty {
       title: { type: "title"; title: TextItemBase[] };

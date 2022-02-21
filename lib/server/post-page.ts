@@ -85,13 +85,9 @@ const getProcssedPostPageDetail = async (
       : null;
 
   let related_study = null;
-  let related_post_list = [];
 
   if (related_study_page_id) {
     related_study = await API_GetStudyPage(related_study_page_id);
-    related_post_list = await API_GetProcessedPostPageListByStudy(
-      related_study_page_id
-    );
   }
 
   const post_title = rawPostTitle[rawPostTitle.type]
@@ -102,7 +98,6 @@ const getProcssedPostPageDetail = async (
     ...rawPostPage,
     post_title,
     related_study,
-    related_post_list,
   };
 };
 
