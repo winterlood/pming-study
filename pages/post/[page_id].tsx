@@ -88,7 +88,7 @@ const Post = (props: Props) => {
           <div className={style.head}>
             이 포스트는
             <br />
-            <Link href={`study/${page.related_study.id}/overview`} passHref>
+            <Link href={`/study/${page.related_study.id}/overview`} passHref>
               <a>
                 {'"'}
                 {page.related_study.study_name}
