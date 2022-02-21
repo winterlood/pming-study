@@ -5,6 +5,9 @@ import style from "./Header.module.scss";
 import MobileDrawer from "./MobileDrawer";
 
 import { MenuOutlined } from "@ant-design/icons";
+import Image from "next/image";
+
+import BrandLogo from "public/image/pming_study_logo.png";
 // ANTD
 
 // COMPS
@@ -18,13 +21,19 @@ import { MenuOutlined } from "@ant-design/icons";
 interface MenuList {
   link: string;
   display: string;
+  isExternalPath?: boolean;
 }
 
 const MenuList: MenuList[] = [
-  { link: "/about", display: "DEMATE란?" },
-  { link: "/challenge", display: "챌린지" },
-  { link: "/apply", display: "챌린지멘토지원" },
-  { link: "/help", display: "챌린지도움말" },
+  { link: "/", display: "홈" },
+  { link: "/study", display: "스터디" },
+  { link: "/post", display: "포스트" },
+  {
+    link: "https://devstu-udemy.netlify.app/",
+    display: "스터디 멘토 지원",
+    isExternalPath: true,
+  },
+  { link: "/help", display: "스터디 멘토 가이드" },
 ];
 
 const Header = () => {
@@ -40,14 +49,26 @@ const Header = () => {
         <div className={style.container_inner}>
           <div>
             <Link href={"/"} passHref>
-              <h3>DEVMATE</h3>
+              <a>
+                <Image
+                  src={BrandLogo.src}
+                  width={"100"}
+                  height={"29"}
+                  alt="pming_study_logo"
+                />
+              </a>
             </Link>
           </div>
 
           <nav className={style.pc_nav}>
             {MenuList.map((it) => (
               <Link key={it.link} href={it.link}>
-                <a className={style.nav_item}>{it.display}</a>
+                <a
+                  target={it.isExternalPath && "_blank"}
+                  className={style.nav_item}
+                >
+                  {it.display}
+                </a>
               </Link>
             ))}
           </nav>

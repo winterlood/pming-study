@@ -2,6 +2,7 @@ import { app_types } from "@types";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import ItemGrid from "components/Common/ItemGrid";
+import MetaHead from "components/Common/MetaHead";
 import PaddingContainer from "components/Common/PaddingContainer";
 import StudyInfoItem from "components/Common/StudyInfoItem";
 import StudyStatusTag from "components/Common/StudyStatusTag";
@@ -41,6 +42,11 @@ const Overview = (props: Props) => {
 
   return (
     <PaddingContainer>
+      <MetaHead
+        title={page.study_name}
+        description={page.study_introduce}
+        thumbnail={page.udemy_lecture_thumbnail_url}
+      />
       <div className={style.container}>
         <div className={style.head}>
           <DetailPageHeader

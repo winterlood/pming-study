@@ -5,18 +5,15 @@ import PaddingContainer from "components/Common/PaddingContainer";
 import { getWholeBlock } from "lib/server/notion";
 import style from "./Post.module.scss";
 import BlockViewer from "components/Common/BlockViewer";
-import {
-  API_GetProcessedPostPage,
-  API_GetRawPostPage,
-} from "lib/server/post-page";
+import { API_GetProcessedPostPage } from "lib/server/post-page";
 import { useRouter } from "next/router";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import Tag from "components/Common/Tag";
 import StripeBanner from "components/Home/StripeBanner";
 import Link from "next/link";
-import StudyItem from "components/Common/StudyItem";
-import ItemGrid from "components/Common/ItemGrid";
 import StudyInfoItem from "components/Common/StudyInfoItem";
+import MetaHead from "components/Common/MetaHead";
+import { getOpenGraphImage } from "lib/server/opengraph";
 
 // TYPES
 
@@ -39,8 +36,17 @@ const Post = (props: Props) => {
     return <DetailPageSkeleton />;
   }
 
+  const ogImage = getOpenGraphImage(blocks);
+
   return (
     <div className={style.container}>
+      <MetaHead
+        title={page.post_title}
+        description={page.related_study.study_introduce}
+        thumbnail={
+          ogImage ? ogImage : page.related_study.udemy_lecture_thumbnail_url
+        }
+      />
       <PaddingContainer>
         <div className={style.header}>
           <div className={style.lecture_tag_wapper}>
@@ -69,6 +75,8 @@ const Post = (props: Props) => {
             title="이런 멋진 스터디, 직접 운영하고 싶으신가요?"
             descript="프밍 클래스와 함께 스터디 멘토가 되어보세요!"
             image_url=""
+            isExternalPath={true}
+            path="https://devstu-udemy.netlify.app/"
           />
         </div>
 

@@ -1,6 +1,5 @@
 import { Client } from "@notionhq/client";
-import { QueryDatabaseParameters } from "@notionhq/client/build/src/api-endpoints";
-import { app_types, notion_types } from "@types";
+import { notion_types } from "@types";
 
 export const notionClient = new Client({
   auth: process.env.NOTION_SERVER_SIDE_READ_ACCESS_TOKEN,

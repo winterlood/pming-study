@@ -45,7 +45,6 @@ const renderBlock = (block: notion_types.Block) => {
     case "divider":
       return <Divider />;
     default: {
-      console.log(`empty block is : ${block}`);
       return (
         <div>
           empty block :{block.id} {block.type}

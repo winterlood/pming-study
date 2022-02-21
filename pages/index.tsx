@@ -10,6 +10,7 @@ import { API_GetProcessedPostPageList } from "lib/server/post-page";
 import { Button } from "antd";
 
 import banner from "public/image/banner.png";
+import MetaHead from "components/Common/MetaHead";
 
 interface Props {
   pages: app_types.PageList;
@@ -23,9 +24,9 @@ interface Props {
 }
 
 export default function Home(props: Props) {
-  console.log(props);
   return (
     <div className={style.container}>
+      <MetaHead />
       <PaddingContainer>
         <section className={style.section_hero}>
           <div className={style.info_wrapper}>
@@ -69,6 +70,8 @@ export default function Home(props: Props) {
             title="멘토는 무료, 멘티는 최저가 수강료 지원"
             descript="선정된 멘토와 멘티에게는 Udemy Global Best 강의료를 지원합니다"
             image_url="https://sb-drops.s3.amazonaws.com/drop/rmopt-602c8a6723dc8-914689400-1613531751.png"
+            isExternalPath
+            path="https://devstu-udemy.netlify.app/"
           />
         </section>
       </PaddingContainer>

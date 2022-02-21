@@ -7,7 +7,7 @@ import { app_types } from "@types";
 import { Tabs } from "antd";
 import PostGrid from "components/Post/index/PostGrid";
 import DetailPageHeader from "components/Common/DetailPageHeader";
-
+import MetaHead from "components/Common/MetaHead";
 // TYPES
 
 interface StudyPostData extends app_types.ProcessedPageWithStudy {
@@ -16,7 +16,6 @@ interface StudyPostData extends app_types.ProcessedPageWithStudy {
 
 interface Props {
   studyPostData: StudyPostData[];
-  // studyPostList: app_types.ProcessedPageWithStudyPostWithRelatedStudy[];
 }
 
 const Index = (props: Props) => {
@@ -26,6 +25,10 @@ const Index = (props: Props) => {
   }, []);
   return (
     <PaddingContainer>
+      <MetaHead
+        title={"모든 포스트"}
+        description={"프밍 스터디의 모든 포스트 모아보기"}
+      />
       <div className={style.container}>
         <DetailPageHeader
           noBorder

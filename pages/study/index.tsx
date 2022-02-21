@@ -2,6 +2,7 @@ import { app_types } from "@types";
 import { Tabs } from "antd";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import ItemGrid from "components/Common/ItemGrid";
+import MetaHead from "components/Common/MetaHead";
 import PaddingContainer from "components/Common/PaddingContainer";
 import StripeBanner from "components/Home/StripeBanner";
 import { API_GetStudyPageList } from "lib/server/study-page";
@@ -34,9 +35,8 @@ const Index = (props: Props) => {
   const router = useRouter();
   const { status } = router.query;
   const { studyListByStatus } = props;
-  console.log(props);
 
-  const [filter, setFilter] = useState((status as string) || "all");
+  const [filter, setFilter] = useState((status as string) || "open");
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
@@ -71,21 +71,22 @@ const Index = (props: Props) => {
 
   return (
     <PaddingContainer>
+      <MetaHead title="스터디 전체보기" />
+
       <div className={style.container}>
         <DetailPageHeader
           noBorder
           title={"스터디 전체 보기"}
           footerChildren={
             <Tabs activeKey={filter} onChange={onChangeFilter}>
-              <TabPane tab="전체" key="all"></TabPane>
-              <TabPane tab="준비중인" key="ready"></TabPane>
               <TabPane tab="참가 가능한" key="open"></TabPane>
               <TabPane tab="진행중인" key="inprogress"></TabPane>
               <TabPane tab="종료된" key="close"></TabPane>
+              <TabPane tab="준비중인" key="ready"></TabPane>
+              <TabPane tab="전체" key="all"></TabPane>
             </Tabs>
           }
         />
-
         <main className={style.main}>
           <ItemGrid
             gridItemType="STUDY"
@@ -95,12 +96,13 @@ const Index = (props: Props) => {
             gridItemList={itemList}
           />
         </main>
-
         <div className={style.footer}>
           <StripeBanner
             title="찾으시는 스터디가 없다면 직접 멘토가 되어보세요"
             descript="선정된 멘토는 Udemy에서 운영하는 Global Best 강의 무료 수강권 혜택이 있습니다"
             image_url=""
+            path="https://devstu-udemy.netlify.app"
+            isExternalPath
           />
         </div>
       </div>
@@ -117,12 +119,12 @@ export const getServerSideProps = async () => {
     ready: [],
     open: [],
     inprogress: [],
-    close: []
+    close: [],
   };
 
-  studyPageList.forEach((study)=>{
-    studyListByStatus[study.study_status.toLowerCase()].push(study)
-  })
+  studyPageList.forEach((study) => {
+    studyListByStatus[study.study_status.toLowerCase()].push(study);
+  });
 
   return {
     props: {

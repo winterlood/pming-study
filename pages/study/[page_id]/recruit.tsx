@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
+import MetaHead from "components/Common/MetaHead";
 
 // TYPES
 
@@ -71,6 +72,11 @@ const Study = (props: Props) => {
   }
   return (
     <div className={style.container}>
+      <MetaHead
+        title={page.study_name}
+        description={page.study_introduce}
+        thumbnail={page.udemy_lecture_thumbnail_url}
+      />
       <ApplyStudyModal
         isOpen={isOpen}
         onClose={toggleModal}
