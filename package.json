@@ -1,5 +1,5 @@
 {
-  "name": "udemy-devstu-study-with-me",
+  "name": "pming-study",
   "private": true,
   "scripts": {
     "dev": "next dev",
