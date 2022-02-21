@@ -1,0 +1,17 @@
+.container {
+  div {
+    width: 100%;
+  }
+  .head {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gray100);
+  }
+  .img_wrapper {
+    width: 100%;
+    div {
+      width: 100%;
+    }
+    margin-bottom: 20px;
+  }
+}

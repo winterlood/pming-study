@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { app_types } from "@types";
 import React from "react";
 import style from "./LectureItem.module.scss";
 
@@ -10,7 +10,7 @@ import style from "./LectureItem.module.scss";
 
 // TYPES
 
-interface Props extends global_types.ProcessedLectureItem {}
+interface Props extends app_types.ProcessedLectureItem {}
 
 // COMPONENT
 

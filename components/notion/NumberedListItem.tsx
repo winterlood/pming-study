@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import React, { ReactNode } from "react";
 import withChildrenBlock from "hoc/withChildrenBlock";
 import NotionText from "./NotionText";
@@ -12,7 +12,7 @@ import style from "./NumberedListItem.module.scss";
 
 // TYPES
 
-interface Props extends global_types.NumberedItemList {
+interface Props extends notion_types.NumberedItemList {
   childComponent: ReactNode;
 }
 

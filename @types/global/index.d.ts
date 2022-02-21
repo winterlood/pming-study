@@ -1,5 +1,12 @@
 declare module "@types" {
-  export namespace global_types {
+  export namespace notion_types {
+    interface Database {
+      db: {
+        results: Page[];
+      };
+      [Key: string]: any;
+    }
+
     interface Block {
       archived: boolean;
       created_time: string;
@@ -8,10 +15,27 @@ declare module "@types" {
       last_edited_time: string;
       object: string;
       type: string;
+      properties: {
+        [key: string]: any;
+      };
       [key: string]: any;
     }
 
-    interface NotionUser extends Block {
+    interface BlockItemBase {
+      id: string;
+      childComponent?: ReactNode;
+    }
+
+    interface BlockWithChildren extends Block {
+      has_children: true;
+      children: Object;
+    }
+
+    interface BlockWithoutChildren extends Block {
+      has_children: false;
+    }
+
+    interface User extends Block {
       type: "person";
       avatar_url: string;
       name: string;
@@ -20,7 +44,7 @@ declare module "@types" {
       };
     }
 
-    interface PageBase {
+    interface Page {
       archived: boolean;
       cover: {
         type: string;
@@ -39,91 +63,103 @@ declare module "@types" {
         database_id: string;
       };
       properties: {
-        Name: {
-          id: string;
-          title: TextItemBase[];
-          type: string;
-        };
-        author?: {
-          id: string;
-          people: NotionUser[];
-        };
-        study_lecture?: {
-          id: string;
-          select: {
-            color: string;
-            id: string;
-            name: string;
-          };
-          type: string;
-        };
-        study_topic?: {
-          id: string;
-          multi_select: {
-            id: string;
-            name: string;
-            color: string;
-          }[];
-          type: string;
-        };
+        onboard: PageProperty["checkbox"];
         [key: string]: any;
       };
-      url: string;
+      [key: string]: any;
     }
 
-    // 가공된 페이지
-    interface PageWithProcessed {
-      id: string;
-      last_edited_time: string;
-      cover: string;
-      url: string;
-      created_time: string;
-      pageTitle: string;
-      pageAnnotations: any;
-      study_lecture: string;
-      study_topic_list: string[];
-    }
+    type PagePropertyType =
+      | "title"
+      | "rich_text"
+      | "text"
+      | "date"
+      | "select"
+      | "url"
+      | "relation"
+      | "checkbox"
+      | 'rollup'
+      ;
 
-    type PageList = PageWithProcessed[];
-
-    interface PageDetail {}
-
-    interface Lecture extends Block {
-      object: "page";
-      properties: {
-        Name: {
-          id: string;
-          title: TextItemBase[];
-          type: "title";
-        };
-        thumbnail: {
-          id: string;
-          type: "url";
-          url: string;
-        };
+    interface PageProperty {
+      title: { type: "title"; title: TextItemBase[] };
+      rich_text: { type: "rich_text"; rich_text: TextItemBase[] };
+      text: { type: string; [key: string]: TextItemBase[] };
+      date: { type: "date"; date: { start: string; end: string } };
+      select: { type: "select"; select: { name: string } };
+      url: { type: "url"; url: string };
+      relation: { type: "relation"; relation: { id: string }[] };
+      checkbox: { type: "checkbox"; checkbox: boolean };
+      rollup: {
+        type: "rollup";
+        rollup:
+          | { type: "array"; array: PagePropertyItem[] }
+          | { type: "number"; number: string };
       };
     }
 
-    interface ProcessedLectureItem {
-      id: string;
-      name: string;
-      thumbnailUrl: string;
+    type PagePropertyItem =
+      | PageProperty["title"]
+      | PageProperty["rich_text"]
+      | PageProperty["text"]
+      | PageProperty["date"]
+      | PageProperty["select"]
+      | PageProperty["url"]
+      | PageProperty["relation"]
+      | PageProperty["checkbox"]
+      | PageProperty["rollup"];
+
+    // APPLY PAGE
+    interface PageWithApplyProperty {
+      apply_date: PageProperty["date"];
+      applicant_name: PageProperty["text"];
+      applicant_email: PageProperty["text"];
+      applicant_phone_number: PageProperty["text"];
+      applicant_reason: PageProperty["text"];
+      applicant_github_url: PageProperty["url"];
+    }
+    interface PageWithApply extends Page {
+      properties: PageWithApplyProperty;
     }
 
-    interface Database {
-      db: {
-        results: PageBase[];
-      };
-      [Key: string]: any;
+    // MENTOR PAGE
+    interface PageWithMentorProperty {
+      mentor_name: PageProperty["rollup"];
+      mentor_profile_image_url: PageProperty["rollup"];
+      mentor_introduce: PageProperty["rollup"];
+      mentor_organization: PageProperty["rollup"];
+      mentor_github_url: PageProperty["rollup"];
+      mentor_email: PageProperty["rollup"];
+      mentor_kakao_id: PageProperty["rollup"];
+    }
+    interface PageWithMentor extends Page {
+      properties: PageWithMentorProperty;
     }
 
-    interface BlockWithChildren extends Block {
-      has_children: true;
-      children: Object;
+    // STUDY PAGE (rollup with mentor)
+    interface PageWithStudyProperty extends PageWithMentorProperty {
+      study_apply_end_date: PageProperty["date"];
+      study_introduce: PageProperty["text"];
+      study_max_member_count: PageProperty["select"];
+      study_name: PageProperty["text"];
+      study_start_date: PageProperty["date"];
+      study_status: PageProperty["select"];
+      udemy_lecture_name: PageProperty["text"];
+      udemy_lecture_thumbnail_url: PageProperty["url"];
+      udemy_lecture_url: PageProperty["url"];
+      apply_count: PageProperty["text"];
+    }
+    interface PageWithStudy extends Page, PageWithMentor {
+      properties: PageWithStudyProperty;
     }
 
-    interface BlockWithoutChildren extends Block {
-      has_children: false;
+    // POST PAGE (rollup with study)
+    interface PageWithPostProperty {
+      post_title: PageProperty["text"];
+      related_study: PageProperty["relation"];
+    }
+    interface PageWithPost extends Page {
+      properties: PageWithPostProperty;
     }
 
     interface TextItemBase {
@@ -153,7 +189,6 @@ declare module "@types" {
     interface HeadingBase extends Block {
       type: "heading_1" | "heading_2" | "heading_3";
     }
-
     interface HeadingOneItem extends HeadingBase {
       heading_1: {
         text: TextItemBase[];
@@ -211,6 +246,7 @@ declare module "@types" {
       };
     }
 
+    // FOR IMAGE BLOCK
     interface ImagePropertyBase {
       caption: TextItemBase[];
       type: "external" | "file";
@@ -252,10 +288,112 @@ declare module "@types" {
         url: string;
       };
     }
-
-    interface BlockItemBase {
+  }
+  export namespace app_types {
+    // 가공된 페이지
+    interface PageWithProcessed {
       id: string;
-      childComponent?: ReactNode;
+      last_edited_time: string;
+      cover: string;
+      url: string;
+      created_time: string;
+      pageTitle: string;
+      pageAnnotations: any;
+      study_lecture: string;
+      study_topic_list: string[];
+    }
+
+    type PageList = PageWithProcessed[];
+
+    interface PageDetail {}
+
+    interface ProcessedLectureItem {
+      id: string;
+      name: string;
+      thumbnailUrl: string;
+    }
+
+    interface ProcessedPostItem {
+      id: string;
+      name: string;
+      thumbnailUrl: string;
+    }
+
+    interface ClassifiedLectureItem {
+      id: string;
+      name: string;
+      thumbnailUrl: string;
+    }
+
+    type StudyStatus = "NOTUTOR" | "READY" | "OPEN" | "INPROGRESS" | "CLOSE";
+
+    /*
+     * PAGE TYPES
+     */
+
+    type PathOnlyPageList = { id: string }[];
+
+    interface ProcessedPage {
+      id: string;
+      last_edited_time: string;
+      cover: any;
+      created_time: string;
+      properties: {
+        [key: string]: any;
+      };
+      [key: string]: any;
+    }
+
+    interface ProcessedPageWithMentor extends ProcessedPage {
+      mentor_name: string;
+      mentor_profile_image_url: string;
+      mentor_introduce: string;
+      mentor_organization: string;
+      mentor_github_url: string;
+      mentor_email: string;
+      mentor_kakao_id: string;
+    }
+
+    interface ProcessedPageWithStudy
+      extends ProcessedPage,
+        ProcessedPageWithMentor {
+      study_apply_end_date: string;
+      study_introduce: string;
+      study_max_member_count: string;
+      study_name: string;
+      study_start_date: string;
+      study_status: StudyStatus;
+      udemy_lecture_name: string;
+      udemy_lecture_thumbnail_url: string;
+      udemy_lecture_url: string;
+      apply_count: string;
+    }
+
+    interface PageWithPost extends ProcessedPage {
+      properties: {
+        post_title: { type: string; [key: string]: TextItemBase[] };
+        related_study: { relation: { id: string }[] } | null;
+      };
+    }
+
+    interface ProcessedPageWithStudyPost extends PageWithPost {
+      post_title: string;
+    }
+
+    interface ProcessedPageWithStudyPostWithRelatedStudy
+      extends ProcessedPageWithStudyPost {
+      related_study: ProcessedPageWithStudy;
+    }
+  }
+
+  export namespace api_types {
+    interface StudyApplyRequestBody {
+      target_study_id: string;
+      applicant_name: string;
+      applicant_email: string;
+      applicant_phone_number: string;
+      applicant_reason: string;
+      applicant_github_url: string;
     }
   }
 }

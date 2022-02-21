@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import React from "react";
 import style from "./Bookmark.module.scss";
 
@@ -10,7 +10,7 @@ import style from "./Bookmark.module.scss";
 
 // TYPES
 
-interface Props extends global_types.BookmarkItem {}
+interface Props extends notion_types.BookmarkItem {}
 
 // COMPONENT
 

@@ -1,18 +1,79 @@
 .container {
+  margin-top: -50px;
   section {
     margin-bottom: 100px;
   }
 
   .section_hero {
-    width: 100vw;
-    height: 360px;
-    .bg {
-      width: 100%;
-      height: 100%;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
+    $break_point: 800px;
+    border-radius: 5px;
+    width: 100%;
+    background-color: var(--primary-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    @media (min-width: $break_point) {
+      padding: 30px;
+      height: 360px;
     }
+    @media (max-width: $break_point) {
+      padding: 100px;
+      align-items: center;
+      gap: 50px;
+      text-align: center;
+    }
+
+    .info_wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .descript {
+        font-family: bold;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .title {
+        font-family: "bold";
+        font-size: var(--font_1);
+        color: white;
+        margin-bottom: 30px;
+      }
+
+      .btn_wrapper {
+        button {
+          width: 300px;
+          height: 40px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .image_wrapper {
+      @media (min-width: $break_point) {
+        position: absolute;
+        right: 10px;
+        bottom: 0px;
+        img {
+          width: 100%;
+          max-width: 400px;
+        }
+      }
+      @media (max-width: $break_point) {
+        img {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    }
+  }
+
+  .section_grid {
+    margin-bottom: 80px;
   }
 
   .section_leture {

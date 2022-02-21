@@ -1,14 +1,19 @@
 import { getDatabase } from "@notionhq/client/build/src/api-endpoints";
-import "../styles/globals.css";
+import Header from "components/Common/Header";
+import { RecoilRoot } from "recoil";
+import "../styles/globals.scss";
+import "../styles/antd.less";
+import Footer from "components/Common/Footer";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
-      <header style={{ textAlign: "center" }}>
-        <h3>UDEMY X DEVSTU</h3>
-      </header>
-      <Component {...pageProps} />
-    </div>
+    <RecoilRoot>
+      <Header />
+      <div className={"app_main"}>
+        <Component {...pageProps} />
+      </div>
+      <Footer />
+    </RecoilRoot>
   );
 }
 

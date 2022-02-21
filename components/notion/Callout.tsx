@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import React from "react";
 import NotionText from "./NotionText";
 import style from "./Callout.module.scss";
@@ -11,7 +11,7 @@ import style from "./Callout.module.scss";
 
 // TYPES
 
-interface Props extends global_types.CalloutItem {}
+interface Props extends notion_types.CalloutItem {}
 
 // COMPONENT
 

@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import React from "react";
 import withChildrenBlock from "hoc/withChildrenBlock";
 import NotionText from "./NotionText";
@@ -13,8 +13,8 @@ import style from "./Paragraph.module.scss";
 // TYPES
 
 interface Props
-  extends global_types.ParagraphItem,
-    global_types.BlockItemBase {}
+  extends notion_types.ParagraphItem,
+    notion_types.BlockItemBase {}
 
 // COMPONENT
 

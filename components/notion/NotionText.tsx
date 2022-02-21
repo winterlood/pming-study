@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import React from "react";
 import style from "./NotionText.module.scss";
 
@@ -10,7 +10,7 @@ import style from "./NotionText.module.scss";
 
 // TYPES
 
-interface Props extends global_types.TextItemBase {}
+interface Props extends notion_types.TextItemBase {}
 
 // COMPONENT
 

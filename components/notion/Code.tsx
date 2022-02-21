@@ -1,8 +1,8 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import React from "react";
 import style from "./Code.module.scss";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { darcula } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import darcula from "react-syntax-highlighter/dist/esm/styles/hljs/dracula";
 // ANTD
 
 // COMPS
@@ -11,7 +11,7 @@ import { darcula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 // TYPES
 
-interface Props extends global_types.CodeItem {}
+interface Props extends notion_types.CodeItem {}
 
 // COMPONENT
 

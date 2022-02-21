@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import React, { ReactNode } from "react";
 import withChildrenBlock from "hoc/withChildrenBlock";
 import style from "./BulletedListItem.module.scss";
@@ -12,7 +12,7 @@ import NotionText from "./NotionText";
 
 // TYPES
 
-interface Props extends global_types.BulletedListItem {
+interface Props extends notion_types.BulletedListItem {
   childComponent: ReactNode;
 }
 

@@ -1,0 +1,43 @@
+.container {
+  .head {
+    margin-bottom: 20px;
+  }
+
+  .body {
+    .apply_input_container {
+      .head_wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        padding-bottom: 10px;
+
+        .title {
+          font-weight: bold;
+          font-size: 16px;
+        }
+        .tooltip_wrapper {
+          color: var(--gray500);
+        }
+      }
+
+      input,
+      textarea {
+        font-size: 16px;
+      }
+
+      textarea {
+        height: 180px;
+      }
+    }
+    margin-bottom: 50px;
+  }
+
+  .submit_warpper {
+    button {
+      width: 100%;
+      height: 50px;
+      font-weight: bold;
+    }
+  }
+}

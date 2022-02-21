@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { app_types, notion_types } from "@types";
 
 interface PageMetaInfo {
   title: string;
@@ -11,7 +11,7 @@ interface PageMetaInfo {
   lectureName: string;
 }
 
-export const getPageMetaInfo = (page: global_types.PageBase): PageMetaInfo => {
+export const getPageMetaInfo = (page: notion_types.PageBase): PageMetaInfo => {
   const title = page.properties.Name.title.map((it) => it.plain_text).join(" ");
   const author =
     page.properties.author &&

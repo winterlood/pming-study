@@ -1,0 +1,96 @@
+.container {
+  section {
+    margin-bottom: 20px;
+  }
+
+  .head_section {
+    .title_wrapper {
+      h1 {
+        margin-bottom: 10px;
+      }
+    }
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--gray100);
+  }
+  .info_section {
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--gray100);
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .info_item:hover {
+      background-color: var(--gray80);
+    }
+    .info_item {
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    @media (max-width: 500px) {
+      .info_item {
+        display: flex;
+        flex-direction: column;
+
+        .info_label {
+          font-weight: bold;
+        }
+
+        .info_value {
+        }
+      }
+    }
+    @media (min-width: 501px) {
+      .info_item {
+        display: flex;
+        justify-content: space-between;
+
+        .info_label {
+          min-width: 150px;
+          font-weight: bold;
+        }
+
+        .info_value {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  .lecture_info_section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--gray80);
+    .lecture_info_main {
+      img {
+        max-width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .article_section {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .apply_btn_wrapper {
+    margin-top: 60px;
+    margin-bottom: 60px;
+
+    button {
+      width: 100%;
+      max-width: 500px;
+      height: 50px;
+      font-weight: bold;
+      border-radius: 5px;
+      font-family: "bold";
+    }
+  }
+}

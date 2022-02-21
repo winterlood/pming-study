@@ -1,0 +1,27 @@
+.container {
+  h3 {
+    font-weight: bold;
+  }
+  .head_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .body_wrapper {
+    display: grid;
+
+    @media (max-width: 450px) {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+    @media (max-width: 800px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 801px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    gap: 20px;
+  }
+}

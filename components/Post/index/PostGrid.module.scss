@@ -1,0 +1,20 @@
+.container {
+  .study_list_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+}
+
+.PostWithStudyItem {
+  .head {
+    .tag_wrapper {
+    }
+    .title_wrapper {
+      font-size: var(--font_3);
+      font-family: bold;
+      word-break: keep-all;
+    }
+    margin-bottom: 10px;
+  }
+}

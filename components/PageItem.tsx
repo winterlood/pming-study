@@ -1,8 +1,8 @@
-import { global_types } from "@types";
+import {} from "@types";
 import Link from "next/link";
 import React from "react";
 import style from "./PageItem.module.scss";
-import Tag from "./Tag";
+// import Tag from "./Tag";
 
 // ANTD
 
@@ -14,7 +14,7 @@ import Tag from "./Tag";
 
 // COMPONENT
 
-const PageItem = (props: global_types.Page) => {
+const PageItem = (props) => {
   return (
     <Link href={`/post/${props.id}`}>
       <a className={style.container}>
@@ -31,11 +31,11 @@ const PageItem = (props: global_types.Page) => {
           <div className={style.body_wrapper}>
             <h4>{props.pageTitle || "제목 없음"}</h4>
           </div>
-          <div>
+          {/* <div>
             {props.study_topic_list.map((it, idx) => (
               <Tag key={props.id + "tag" + idx}>{it}</Tag>
             ))}
-          </div>
+          </div> */}
         </div>
       </a>
     </Link>

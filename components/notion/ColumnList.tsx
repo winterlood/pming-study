@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import React from "react";
 import Column from "./Column";
 import style from "./ColumnList.module.scss";
@@ -11,7 +11,7 @@ import style from "./ColumnList.module.scss";
 
 // TYPES
 
-interface Props extends global_types.ColumnListItem {}
+interface Props extends notion_types.ColumnListItem {}
 // COMPONENT
 
 const ColumnList = (props: Props) => {

@@ -1,4 +1,4 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import dynamic from "next/dynamic";
 import Bookmark from "./Bookmark";
 import BulletedListItem from "./BulletedListItem";
@@ -13,35 +13,35 @@ import Divider from "./Divider";
 import NotionEmbed from "./NotionEmbed";
 
 interface BlockProps {
-  block: global_types.Block;
+  block: notion_types.Block;
 }
 
 const Code = dynamic(() => import("./Code"), { ssr: false });
 
-const renderBlock = (block: global_types.Block) => {
+const renderBlock = (block: notion_types.Block) => {
   switch (block.type) {
     case "paragraph":
       return <Paragraph {...block} />;
     case "heading_1":
     case "heading_2":
     case "heading_3":
-      return <Heading {...(block as global_types.HeadingItem)} />;
+      return <Heading {...(block as notion_types.HeadingItem)} />;
     case "code":
-      return <Code {...(block as global_types.CodeItem)} />;
+      return <Code {...(block as notion_types.CodeItem)} />;
     case "column_list":
-      return <ColumnList {...(block as global_types.ColumnListItem)} />;
+      return <ColumnList {...(block as notion_types.ColumnListItem)} />;
     case "bookmark":
-      return <Bookmark {...(block as global_types.BookmarkItem)} />;
+      return <Bookmark {...(block as notion_types.BookmarkItem)} />;
     case "bulleted_list_item":
-      return <BulletedListItem {...(block as global_types.BulletedListItem)} />;
+      return <BulletedListItem {...(block as notion_types.BulletedListItem)} />;
     case "numbered_list_item":
-      return <NumberedListItem {...(block as global_types.NumberedItemList)} />;
+      return <NumberedListItem {...(block as notion_types.NumberedItemList)} />;
     case "callout":
-      return <Callout {...(block as global_types.CalloutItem)} />;
+      return <Callout {...(block as notion_types.CalloutItem)} />;
     case "image":
-      return <NotionImage {...(block as global_types.ImageItem)} />;
+      return <NotionImage {...(block as notion_types.ImageItem)} />;
     case "embed":
-      return <NotionEmbed {...(block as global_types.EmbedItem)} />;
+      return <NotionEmbed {...(block as notion_types.EmbedItem)} />;
     case "divider":
       return <Divider />;
     default: {

@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import NotionText from "./NotionText";
 
-type Props = global_types.HeadingItem & {
+type Props = notion_types.HeadingItem & {
   type: "heading_1" | "heading_2" | "heading_3";
 };
 

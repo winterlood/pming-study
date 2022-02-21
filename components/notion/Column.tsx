@@ -1,8 +1,8 @@
-import { global_types } from "@types";
+import { notion_types } from "@types";
 import Block from "./Block";
 import style from "./Column.module.scss";
 
-interface ColumnProps extends global_types.ColumnItem {}
+interface ColumnProps extends notion_types.ColumnItem {}
 
 const Column = (props: ColumnProps) => {
   const { column } = props;
