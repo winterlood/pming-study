@@ -16,6 +16,7 @@ import StripeBanner from "components/Home/StripeBanner";
 import Link from "next/link";
 import StudyItem from "components/Common/StudyItem";
 import ItemGrid from "components/Common/ItemGrid";
+import StudyInfoItem from "components/Common/StudyInfoItem";
 
 // TYPES
 
@@ -89,7 +90,7 @@ const Post = (props: Props) => {
             &nbsp;스터디의 진행 결과입니다
           </div>
           <div className={style.main}>
-            <StudyItem {...page.related_study} />
+            <StudyInfoItem {...page.related_study} />
           </div>
         </div>
       </PaddingContainer>

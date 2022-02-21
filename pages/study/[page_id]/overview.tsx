@@ -3,6 +3,7 @@ import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import ItemGrid from "components/Common/ItemGrid";
 import PaddingContainer from "components/Common/PaddingContainer";
+import StudyInfoItem from "components/Common/StudyInfoItem";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import { API_GetProcessedPostPageListByStudy } from "lib/server/post-page";
 import {
@@ -49,7 +50,9 @@ const Overview = (props: Props) => {
           />
         </div>
         <div className={style.main}>
-          <section className={style.mentor_wrapper}></section>
+          <section className={style.study_info_wrapper}>
+            <StudyInfoItem {...page} />
+          </section>
           <section className={style.post_wrapper}>
             <ItemGrid
               title=""
