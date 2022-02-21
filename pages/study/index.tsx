@@ -34,6 +34,7 @@ const Index = (props: Props) => {
   const router = useRouter();
   const { status } = router.query;
   const { studyListByStatus } = props;
+  console.log(props);
 
   const [filter, setFilter] = useState((status as string) || "all");
   const [itemList, setItemList] = useState([]);
@@ -113,11 +114,15 @@ export const getServerSideProps = async () => {
   const studyPageList = await API_GetStudyPageList();
 
   const studyListByStatus = {
-    ready: studyPageList.filter((it) => it.study_status === "READY"),
-    open: studyPageList.filter((it) => it.study_status === "OPEN"),
-    inprogress: studyPageList.filter((it) => it.study_status === "INPROGRESS"),
-    close: studyPageList.filter((it) => it.study_status === "CLOSE"),
+    ready: [],
+    open: [],
+    inprogress: [],
+    close: []
   };
+
+  studyPageList.forEach((study)=>{
+    studyListByStatus[study.study_status.toLowerCase()].push(study)
+  })
 
   return {
     props: {
