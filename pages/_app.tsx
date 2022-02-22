@@ -14,6 +14,8 @@ import favico from "public/favicon.ico";
 import "nprogress/nprogress.css";
 import NProgress from "nprogress";
 
+import channelTalkScript from "lib/client/channeltalk";
+
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const handleRouteStart = () => NProgress.start();
@@ -35,6 +37,11 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <link rel="shortcut icon" href={favico.src} type="image/x-icon" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: channelTalkScript(),
+          }}
+        ></script>
       </Head>
       <MetaHead />
       <Header />
