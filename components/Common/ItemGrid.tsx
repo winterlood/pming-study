@@ -1,4 +1,5 @@
 import { app_types } from "@types";
+import { Skeleton } from "antd";
 import StudyItem from "components/Common/StudyItem";
 import Link from "next/link";
 import React from "react";
@@ -16,7 +17,7 @@ import PostItem from "./PostItem";
 interface PropsBase {
   title: string;
   detailPath: string;
-  gridItemType: "STUDY" | "POST";
+  gridItemType: "STUDY" | "POST" | "SKELETON";
   noHeader?: boolean;
 }
 
@@ -30,7 +31,11 @@ interface PropsWithPostItem extends PropsBase {
   gridItemList: app_types.ProcessedPageWithStudyPostWithRelatedStudy[];
 }
 
-type Props = PropsWithStudyItem | PropsWithPostItem;
+interface PropsWithSkeleton extends PropsBase {
+  gridItemType: "SKELETON";
+}
+
+type Props = PropsWithStudyItem | PropsWithPostItem | PropsWithSkeleton;
 
 const renderGridItemList = (
   gridItemType: PropsBase["gridItemType"],
@@ -44,6 +49,23 @@ const renderGridItemList = (
 
   if (gridItemType === "POST") {
     return gridItemList.map((it) => <PostItem key={it.id} {...it} />);
+  }
+
+  if (gridItemType === "SKELETON") {
+    return Array(5)
+      .fill(0)
+      .map((it, idx) => (
+        <Skeleton.Input
+          key={idx}
+          active
+          style={{
+            width: "100%",
+            height: "100%",
+            minHeight: "170px",
+            borderRadius: "5px",
+          }}
+        ></Skeleton.Input>
+      ));
   }
 };
 

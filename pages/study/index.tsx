@@ -1,5 +1,5 @@
 import { app_types } from "@types";
-import { Tabs } from "antd";
+import { Skeleton, Tabs } from "antd";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import ItemGrid from "components/Common/ItemGrid";
 import MetaHead from "components/Common/MetaHead";
@@ -69,6 +69,38 @@ const Index = (props: Props) => {
     setFilter(e);
   }, []);
 
+  if (router.isFallback) {
+    return (
+      <PaddingContainer>
+        <MetaHead title="스터디 전체보기" />
+        <div className={style.container}>
+          <Skeleton
+            active
+            title={{
+              style: {
+                height: "50px",
+              },
+            }}
+            paragraph={{
+              rows: 1,
+              style: {
+                height: "30px",
+              },
+            }}
+          />
+        </div>
+        <main className={style.main}>
+          <ItemGrid
+            gridItemType="SKELETON"
+            title=""
+            detailPath={""}
+            noHeader={true}
+          />
+        </main>
+      </PaddingContainer>
+    );
+  }
+
   return (
     <PaddingContainer>
       <MetaHead title="스터디 전체보기" />
@@ -112,7 +144,7 @@ const Index = (props: Props) => {
 
 export default Index;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const studyPageList = await API_GetStudyPageList();
 
   const studyListByStatus = {
@@ -130,5 +162,6 @@ export const getServerSideProps = async () => {
     props: {
       studyListByStatus: studyListByStatus,
     },
+    revalidate: 1,
   };
 };
