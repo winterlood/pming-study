@@ -33,7 +33,7 @@ const MobileDrawer = ({ menuList, isOpen, onClose }: Props) => {
 
   useEffect(() => {
     onClose();
-  }, [router.pathname]);
+  }, [onClose, router.pathname]);
 
   return (
     <Drawer
