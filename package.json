@@ -16,7 +16,6 @@
     "axios": "^0.26.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "cross-env": "^7.0.3",
-    "framer-motion": "^5.6.0",
     "next": "12.0.8",
     "next-compose-plugins": "^2.2.1",
     "next-plugin-antd-less": "^1.8.0",
@@ -24,7 +23,6 @@
     "react-dom": "17.0.2",
     "react-modal-image": "^2.5.0",
     "react-syntax-highlighter": "^15.4.5",
-    "recoil": "^0.5.2",
     "sass": "^1.49.0"
   },
   "devDependencies": {

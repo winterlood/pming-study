@@ -1,19 +1,22 @@
 import { app_types, notion_types } from "@types";
-import React, { useCallback } from "react";
-import Comments from "components/Common/Comment";
-import PaddingContainer from "components/Common/PaddingContainer";
-import { getWholeBlock } from "lib/server/notion";
+import React from "react";
 import style from "./Post.module.scss";
-import BlockViewer from "components/Common/BlockViewer";
-import { API_GetProcessedPostPage } from "lib/server/post-page";
+
 import { useRouter } from "next/router";
+import Link from "next/link";
+
+import { API_GetProcessedPostPage } from "lib/server/post-page";
+import { getOpenGraphImage } from "lib/server/opengraph";
+import { getWholeBlock } from "lib/server/notion";
+
+import BlockViewer from "components/Common/BlockViewer";
+import StudyInfoItem from "components/Common/StudyInfoItem";
+import MetaHead from "components/Common/MetaHead";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import Tag from "components/Common/Tag";
 import StripeBanner from "components/Home/StripeBanner";
-import Link from "next/link";
-import StudyInfoItem from "components/Common/StudyInfoItem";
-import MetaHead from "components/Common/MetaHead";
-import { getOpenGraphImage } from "lib/server/opengraph";
+import Comments from "components/Common/Comment";
+import PaddingContainer from "components/Common/PaddingContainer";
 
 // TYPES
 

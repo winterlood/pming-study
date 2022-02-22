@@ -1,9 +1,7 @@
 import { app_types } from "@types";
-import { getTraslatedStudyStatus } from "lib/client/study";
 import Link from "next/link";
 import React from "react";
 import style from "./PostItem.module.scss";
-import StudyStatusTag from "./StudyStatusTag";
 import Tag from "./Tag";
 
 // ANTD

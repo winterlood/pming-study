@@ -1,8 +1,7 @@
 import React from "react";
 import style from "./DetailPageSkeleton.module.scss";
-import { Skeleton, Space } from "antd";
+import { Skeleton } from "antd";
 import PaddingContainer from "./PaddingContainer";
-import DetailPageHeader from "./DetailPageHeader";
 
 // TYPES
 

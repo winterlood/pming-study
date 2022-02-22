@@ -1,7 +1,5 @@
 import { app_types } from "@types";
-import LectureItem from "components/Home/LectureItem";
 import PaddingContainer from "components/Common/PaddingContainer";
-import PageItem from "components/PageItem";
 import style from "./index.module.scss";
 import ItemGrid from "components/Common/ItemGrid";
 import { API_GetStudyPageList } from "lib/server/study-page";

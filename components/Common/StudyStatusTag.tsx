@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import style from "./StudyStatusTag.module.scss";
 import Tag from "components/Common/Tag";
 import { app_types } from "@types";
 import {

@@ -1,7 +1,7 @@
 import { app_types } from "@types";
 import StudyItem from "components/Common/StudyItem";
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import React from "react";
 import style from "./ItemGrid.module.scss";
 import PostItem from "./PostItem";
 

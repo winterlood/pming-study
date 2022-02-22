@@ -1,14 +1,13 @@
 import PaddingContainer from "components/Common/PaddingContainer";
 import Link from "next/link";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import style from "./Header.module.scss";
 import MobileDrawer from "./MobileDrawer";
 
-import { MenuOutlined } from "@ant-design/icons";
 import Image from "next/image";
 
 import BrandLogo from "public/image/pming_study_logo.png";
-import { useRouter } from "next/router";
+import Icon from "./Icon";
 // ANTD
 
 // COMPS
@@ -79,7 +78,7 @@ const Header = () => {
           </nav>
 
           <div onClick={toggleDrawer} className={style.mobile_nav}>
-            <MenuOutlined />
+            <Icon icon="MenuOutlined" />
           </div>
         </div>
         <MobileDrawer

@@ -1,5 +1,4 @@
 import Header from "components/Common/Header";
-import { RecoilRoot } from "recoil";
 import "../styles/globals.scss";
 import "../styles/antd.less";
 import Footer from "components/Common/Footer";
@@ -10,7 +9,7 @@ import favico from "public/favicon.ico";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <RecoilRoot>
+    <>
       <Head>
         <link rel="shortcut icon" href={favico.src} type="image/x-icon" />
       </Head>
@@ -20,7 +19,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
       <Footer />
-    </RecoilRoot>
+    </>
   );
 }
 

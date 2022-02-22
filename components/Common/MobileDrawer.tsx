@@ -2,11 +2,12 @@ import { Drawer } from "antd";
 import React, { useEffect } from "react";
 import style from "./MobileDrawer.module.scss";
 
-import { CloseOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import BrandLogo from "public/image/pming_study_logo.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Icon from "./Icon";
+
 
 // ANTD
 
@@ -55,7 +56,7 @@ const MobileDrawer = ({ menuList, isOpen, onClose }: Props) => {
             />
           </div>
           <div className={style.head_action} onClick={onClose}>
-            <CloseOutlined />
+            <Icon icon={'CloseOutlined'} />
           </div>
         </div>
         <div className={style.body}>
