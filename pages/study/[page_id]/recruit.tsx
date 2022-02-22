@@ -5,7 +5,7 @@ import { getWholeBlock } from "lib/server/notion";
 import BlockViewer from "components/Common/BlockViewer";
 import { api_types, app_types, notion_types } from "@types";
 import Comments from "components/Common/Comment";
-import { API_GetRawStudyPage, API_GetStudyPage } from "lib/server/study-page";
+import { API_GetStudyPage } from "lib/server/study-page";
 import { getLocaleEndDate } from "lib/client/study";
 import ApplyStudyModal from "components/Study/ApplyStudyModal";
 import { message, Button } from "antd";
@@ -15,15 +15,16 @@ import StudyStatusTag from "components/Common/StudyStatusTag";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import MetaHead from "components/Common/MetaHead";
+import { getStudyPageOpenGraphImage } from "lib/server/opengraph";
 
 // TYPES
 
 // COMPONENT
 
 interface Props {
-  rawPage: any;
   page: app_types.ProcessedPageWithStudy;
   blocks: notion_types.Block[];
+  ogImageUrl: string;
 }
 
 const Study = (props: Props) => {
@@ -75,7 +76,7 @@ const Study = (props: Props) => {
       <MetaHead
         title={page.study_name}
         description={page.study_introduce}
-        thumbnail={page.udemy_lecture_thumbnail_url}
+        thumbnail={props.ogImageUrl || page.udemy_lecture_thumbnail_url}
       />
       <ApplyStudyModal
         isOpen={isOpen}
@@ -169,8 +170,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx) => {
   const { page_id } = ctx.params;
 
-  const [rawPage, page, blocks] = await Promise.all([
-    API_GetRawStudyPage(page_id),
+  const [page, blocks] = await Promise.all([
     API_GetStudyPage(page_id),
     getWholeBlock(page_id),
   ]);
@@ -181,11 +181,14 @@ export const getStaticProps = async (ctx) => {
     };
   }
 
+  const ogPath = `mentor_name=${page.mentor_name}&title=${page.study_name}&mentor_profile_image=${page.mentor_profile_image_url}&type=study`;
+  const ogImageUrl = await getStudyPageOpenGraphImage(ogPath);
+
   return {
     props: {
-      rawPage: rawPage,
       page: page,
       blocks: blocks,
+      ogImageUrl,
     },
     revalidate: 1,
   };

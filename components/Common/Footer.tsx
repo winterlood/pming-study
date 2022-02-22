@@ -19,6 +19,13 @@ interface Props {}
 // COMPONENT
 
 const Footer = (props: Props) => {
+  const handleOnClick = () => {
+    if (typeof window !== "undefined") {
+      // @ts-ignore
+      window.ChannelIO("showMessenger");
+    }
+  };
+
   return (
     <footer className={style.container}>
       <PaddingContainer>
@@ -53,7 +60,7 @@ const Footer = (props: Props) => {
                 <div className={style.value}>이용약관</div>
               </div> */}
               <div className={style.customer_center_wrapper}>
-                <Button>문의하기</Button>
+                <Button onClick={handleOnClick}>문의하기</Button>
                 <div className={style.button_descript}>
                   오전 10시 ~ 오후 4시 30분 (주말, 공휴일 제외)
                 </div>

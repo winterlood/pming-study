@@ -6,6 +6,7 @@ import MetaHead from "components/Common/MetaHead";
 import PaddingContainer from "components/Common/PaddingContainer";
 import StudyInfoItem from "components/Common/StudyInfoItem";
 import StudyStatusTag from "components/Common/StudyStatusTag";
+import { getStudyPageOpenGraphImage } from "lib/server/opengraph";
 import { API_GetProcessedPostPageListByStudy } from "lib/server/post-page";
 import { API_GetStudyPage } from "lib/server/study-page";
 import { useRouter } from "next/router";
@@ -23,6 +24,7 @@ import style from "./overview.module.scss";
 interface Props {
   page: app_types.ProcessedPageWithStudy;
   postList: app_types.ProcessedPageWithStudyPostWithRelatedStudy[];
+  ogImageUrl: string;
 }
 
 // COMPONENT
@@ -41,7 +43,7 @@ const Overview = (props: Props) => {
       <MetaHead
         title={page.study_name}
         description={page.study_introduce}
-        thumbnail={page.udemy_lecture_thumbnail_url}
+        thumbnail={props.ogImageUrl || page.udemy_lecture_thumbnail_url}
       />
       <div className={style.container}>
         <div className={style.head}>
@@ -93,10 +95,14 @@ export const getStaticProps = async (ctx) => {
     };
   }
 
+  const ogPath = `mentor_name=${page.mentor_name}&title=${page.study_name}&mentor_profile_image=${page.mentor_profile_image_url}&type=study`;
+  const ogImageUrl = await getStudyPageOpenGraphImage(ogPath);
+
   return {
     props: {
       page: page,
       postList: postList.map((it) => ({ ...it, related_study: page })),
+      ogImageUrl,
     },
     revalidate: 1,
   };
