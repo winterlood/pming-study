@@ -1,23 +1,68 @@
 @font-face {
   font-family: "bold";
-  src: url("/fonts/SPOQAHANSANSNEO-BOLD.TTF");
+  font-weight: 700;
+  src: local("SpoqaHanSansBold"),
+    url("/fonts/SpoqaHanSansBold.woff2") format("woff2"),
+    url("/fonts/SpoqaHanSans/SpoqaHanSansBold.woff") format("woff"),
+    url("/fonts/SpoqaHanSans/SpoqaHanSansBold.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "medium";
-  src: url("/fonts/SPOQAHANSANSNEO-MEDIUM.TTF");
+  font-weight: 500;
+  src: local("SpoqaHanSansMedium"),
+    url("/fonts/SpoqaHanSansMedium.woff2") format("woff2"),
+    url("/fonts/SpoqaHanSansMedium.woff") format("woff"),
+    url("/fonts/SpoqaHanSansMedium.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "regular";
-  src: url("/fonts/SPOQAHANSANSNEO-REGULAR.TTF");
+  font-weight: 400;
+  src: local("Spoqa Han Sans Regular"),
+    url("/fonts/SpoqaHanSansRegular.woff2") format("woff2"),
+    url("/fonts/SpoqaHanSansRegular.woff2.woff") format("woff"),
+    url("/fonts/SpoqaHanSansRegular.woff2.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "light";
-  src: url("/fonts/SPOQAHANSANSNEO-LIGHT.TTF");
+  font-weight: 300;
+  src: local("Spoqa Han Sans Light"),
+    url("/fonts/SpoqaHanSansLight.woff2") format("woff2"),
+    url("/fonts/SpoqaHanSansLight.woff") format("woff"),
+    url("/fonts/SpoqaHanSansLight.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "thin";
-  src: url("/fonts/SPOQAHANSANSNEO-THIN.TTF");
+  font-weight: 100;
+  src: local("Spoqa Han Sans Thin"),
+    url("/fonts/SpoqaHanSansThin.woff2") format("woff2"),
+    url("/fonts/SpoqaHanSansThin.woff") format("woff"),
+    url("/fonts/SpoqaHanSansThin.ttf") format("truetype");
 }
+
+// @font-face {
+//   font-family: "bold";
+//   src: url("/fonts/SPOQAHANSANSNEO-BOLD.TTF");
+// }
+// @font-face {
+//   font-family: "medium";
+//   src: url("/fonts/SPOQAHANSANSNEO-MEDIUM.TTF");
+// }
+// @font-face {
+//   font-family: "regular";
+//   src: url("/fonts/SPOQAHANSANSNEO-REGULAR.TTF");
+// }
+// @font-face {
+//   font-family: "light";
+//   src: url("/fonts/SPOQAHANSANSNEO-LIGHT.TTF");
+// }
+// @font-face {
+//   font-family: "thin";
+//   src: url("/fonts/SPOQAHANSANSNEO-THIN.TTF");
+// }
 
 html,
 body {
