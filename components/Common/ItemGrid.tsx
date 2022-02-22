@@ -39,7 +39,7 @@ type Props = PropsWithStudyItem | PropsWithPostItem | PropsWithSkeleton;
 
 const renderGridItemList = (
   gridItemType: PropsBase["gridItemType"],
-  gridItemList:
+  gridItemList?:
     | PropsWithStudyItem["gridItemList"]
     | PropsWithPostItem["gridItemList"]
 ) => {
@@ -86,7 +86,9 @@ const ItemGrid = (props: Props) => {
       )}
 
       <div className={style.body_wrapper}>
-        {renderGridItemList(props.gridItemType, props.gridItemList)}
+        {props.gridItemType !== "SKELETON"
+          ? renderGridItemList(props.gridItemType, props.gridItemList)
+          : renderGridItemList(props.gridItemType)}
       </div>
     </div>
   );
