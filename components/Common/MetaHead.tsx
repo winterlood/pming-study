@@ -1,11 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import ThumbnailImage from "public/image/open_graph_thumbnail.png";
-// ANTD
-
-// COMPS
-
-// STATICS
 
 // TYPES
 
@@ -18,23 +13,25 @@ interface Props {
 // COMPONENT
 
 const MetaHead = (props: Props) => {
+  const image = props.thumbnail || process.env.BASE_URL + ThumbnailImage.src;
+  const description =
+    props.description || "프밍 스터디 | 이제 혼자가 아닌 함께 스터디하자";
+  const title = props.title ? `${props.title} | 프밍 스터디` : "프밍 스터디";
+
   const openGraphObj = {
     og: {
-      title: props.title ? `${props.title} | 프밍 스터디` : "프밍 스터디",
+      title,
+      image,
+      description,
       type: "website",
-      image: props.thumbnail || ThumbnailImage.src,
-      description:
-        props.description || "프밍 스터디 | 이제 혼자가 아닌 함께 스터디하자",
       site_name: "프밍 스터디",
       locale: "ko",
     },
-
     twitter: {
+      title,
+      image,
+      description,
       card: "image",
-      title: props.title ? `${props.title} | 프밍 스터디` : "프밍 스터디",
-      description:
-        props.description || "프밍 스터디 | 이제 혼자가 아닌 함께 스터디하자",
-      image: props.thumbnail || ThumbnailImage.src,
     },
   };
 

@@ -4,8 +4,17 @@ const withPlugins = require("next-compose-plugins");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
+
 const nextConfig = {
   env: {
+    /*
+     * PROJECTS CONFIGS
+     */
+    BASE_URL:
+      process.env.NODE_ENV === "development"
+        ? process.env.BASE_URL_LOCAL
+        : process.env.BASE_URL_PRODUCTION,
+
     /*
      * INTEGRATION KEYS
      */
