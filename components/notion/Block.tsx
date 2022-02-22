@@ -61,36 +61,4 @@ const Block = ({ block }: BlockProps) => {
   return <div className={style.block}>{renderBlock(block)}</div>;
 };
 
-// switch (type) {
-
-//   case "bulleted_list_item":
-//   case "numbered_list_item":
-//     return <li>{value.text}</li>;
-//   case "to_do":
-//     return (
-//       <div>
-//         <label htmlFor={id}>
-//           <input type="checkbox" id={id} defaultChecked={value.checked} />{" "}
-//           {value.text}
-//         </label>
-//       </div>
-//     );
-
-//   case "child_page":
-//     return <p>{value.title}</p>;
-//   case "image":
-//     const src =
-//       value.type === "external" ? value.external.url : value.file.url;
-//     const caption = value.caption ? value.caption[0].plain_text : "";
-//     return (
-//       <figure>
-//         <img src={src} alt={caption} />
-//         {caption && <figcaption>{caption}</figcaption>}
-//       </figure>
-//     );
-//   default:
-//     return `❌ Unsupported block (${
-//       type === "unsupported" ? "unsupported by Notion API" : type
-//     })`;
-// }
 export default Block;
