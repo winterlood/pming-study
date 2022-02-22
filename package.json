@@ -19,6 +19,7 @@
     "next": "12.0.8",
     "next-compose-plugins": "^2.2.1",
     "next-plugin-antd-less": "^1.8.0",
+    "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-modal-image": "^2.5.0",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.10",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.38",
     "babel-plugin-import": "^1.13.3",
     "eslint": "8.7.0",
