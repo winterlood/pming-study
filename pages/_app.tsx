@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Router } from "next/router";
+import Head from "next/head";
 
 import "../styles/globals.scss";
 import "../styles/antd.less";
@@ -7,14 +8,12 @@ import "../styles/antd.less";
 import Header from "components/Common/Header";
 import Footer from "components/Common/Footer";
 import MetaHead from "components/Common/MetaHead";
-import Head from "next/head";
+import ExternalScript from "components/Common/ExternalScript";
 
 import favico from "public/favicon.ico";
 
 import "nprogress/nprogress.css";
 import NProgress from "nprogress";
-
-import channelTalkScript from "lib/client/channeltalk";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -37,11 +36,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <link rel="shortcut icon" href={favico.src} type="image/x-icon" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: channelTalkScript(),
-          }}
-        ></script>
+        <ExternalScript />
       </Head>
       <MetaHead />
       <Header />
