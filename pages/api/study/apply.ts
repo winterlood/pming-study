@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       target_study_id,
       applicant_name,
       applicant_email,
-      applicant_phone_number,
+      applicant_kakao_id,
       applicant_reason,
       applicant_github_url,
     } = reqObj;
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
           target_study_id: buildRichTextObject(target_study_id),
           applicant_name: buildRichTextObject(applicant_name),
           applicant_email: buildRichTextObject(applicant_email),
-          applicant_phone_number: buildRichTextObject(applicant_phone_number),
+          applicant_kakao_id: buildRichTextObject(applicant_kakao_id),
           applicant_reason: buildRichTextObject(applicant_reason),
           applicant_github_url: { url: applicant_github_url },
         },

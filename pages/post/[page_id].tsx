@@ -1,6 +1,7 @@
 import { app_types, notion_types } from "@types";
 import React from "react";
 import style from "./Post.module.scss";
+import dynamic from "next/dynamic";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -15,8 +16,12 @@ import MetaHead from "components/Common/MetaHead";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import Tag from "components/Common/Tag";
 import StripeBanner from "components/Home/StripeBanner";
-import Comments from "components/Common/Comment";
 import PaddingContainer from "components/Common/PaddingContainer";
+
+// LAZY
+const Comments = dynamic(() => import("components/Common/Comment"), {
+  ssr: false,
+});
 
 // TYPES
 

@@ -1,16 +1,15 @@
 import { api_types } from "@types";
-import { Button, Input, Modal, Tooltip } from "antd";
+import { Button, Drawer, Input, Tooltip } from "antd";
+import Icon from "components/Common/Icon";
 import React, {
   ReactNode,
   RefObject,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react";
-import style from "./ApplyStudyModal.module.scss";
-
-import { useEffect } from "react";
-import Icon from "components/Common/Icon";
+import style from "./ApplyStudyDrawer.module.scss";
 
 // ANTD
 
@@ -19,14 +18,6 @@ import Icon from "components/Common/Icon";
 // STATICS
 
 // TYPES
-
-interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (applyData: Partial<api_types.StudyApplyRequestBody>) => void;
-}
-
-// COMPONENT
 
 const ApplyInputWrapper = ({
   title,
@@ -54,6 +45,12 @@ const ApplyInputWrapper = ({
 };
 
 type State = Partial<api_types.StudyApplyRequestBody>;
+
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: any;
+}
 const initialState: State = {
   applicant_name: "",
   applicant_email: "",
@@ -61,7 +58,7 @@ const initialState: State = {
   applicant_reason: "",
   applicant_github_url: "",
 };
-const ApplyStudyModal = (props: Props) => {
+const ApplyStudyDrawer = (props: Props) => {
   const [state, setState] = useState<State>(initialState);
   const nameRef = useRef<HTMLInputElement>();
   const emailRef = useRef<HTMLInputElement>();
@@ -137,15 +134,24 @@ const ApplyStudyModal = (props: Props) => {
   }, []);
 
   return (
-    <Modal
-      footer={null}
-      centered
+    <Drawer
+      height={"95%"}
+      placement={"bottom"}
+      closable={false}
+      onClose={props.onClose}
       visible={props.isOpen}
-      onCancel={props.onClose}
+      key={"bottom"}
     >
       <div className={style.container}>
         <div className={style.head}>
-          <h3>🎯 스터디 지원하기</h3>
+          <div>
+            <h3>🎯 스터디 지원하기</h3>
+          </div>
+          <div>
+            <span onClick={props.onClose} className={style.close_btn}>
+              <Icon icon={"CloseOutlined"} />
+            </span>
+          </div>
         </div>
 
         <div className={style.body}>
@@ -202,8 +208,8 @@ const ApplyStudyModal = (props: Props) => {
           </Button>
         </div>
       </div>
-    </Modal>
+    </Drawer>
   );
 };
 
-export default ApplyStudyModal;
+export default ApplyStudyDrawer;

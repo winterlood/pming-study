@@ -2,13 +2,12 @@ import React, { useCallback, useState } from "react";
 import style from "./recruit.module.scss";
 import { api_types, app_types, notion_types } from "@types";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import { message, Button } from "antd";
 
 // COMPONENTS
-import ApplyStudyModal from "components/Study/ApplyStudyModal";
 import PaddingContainer from "components/Common/PaddingContainer";
 import BlockViewer from "components/Common/BlockViewer";
-import Comments from "components/Common/Comment";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
@@ -20,6 +19,16 @@ import { getWholeBlock } from "lib/server/notion";
 import { getLocaleEndDate } from "lib/client/study";
 import { API_GetStudyPage } from "lib/server/study-page";
 import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
+
+// LAZY
+const ApplyStudyDrawer = dynamic(
+  () => import("components/Study/ApplyStudyDrawer"),
+  { ssr: false }
+);
+
+const Comments = dynamic(() => import("components/Common/Comment"), {
+  ssr: false,
+});
 
 // COMPONENT
 
@@ -80,7 +89,12 @@ const Study = (props: Props) => {
         description={page.study_introduce}
         thumbnail={props.ogImageUrl || page.udemy_lecture_thumbnail_url}
       />
-      <ApplyStudyModal
+      {/* <ApplyStudyModal
+        isOpen={isOpen}
+        onClose={toggleModal}
+        onSubmit={submit}
+      /> */}
+      <ApplyStudyDrawer
         isOpen={isOpen}
         onClose={toggleModal}
         onSubmit={submit}

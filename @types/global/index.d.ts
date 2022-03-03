@@ -113,7 +113,7 @@ declare module "@types" {
       apply_date: PageProperty["date"];
       applicant_name: PageProperty["text"];
       applicant_email: PageProperty["text"];
-      applicant_phone_number: PageProperty["text"];
+      applicant_kakao_id: PageProperty["text"];
       applicant_reason: PageProperty["text"];
       applicant_github_url: PageProperty["url"];
     }
@@ -390,7 +390,7 @@ declare module "@types" {
       target_study_id: string;
       applicant_name: string;
       applicant_email: string;
-      applicant_phone_number: string;
+      applicant_kakao_id: string;
       applicant_reason: string;
       applicant_github_url: string;
     }

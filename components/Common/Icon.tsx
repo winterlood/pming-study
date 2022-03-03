@@ -2,8 +2,9 @@ import React from "react";
 
 import { default as CloseOutlined } from "@ant-design/icons/CloseOutlined";
 import { default as MenuOutlined } from "@ant-design/icons/MenuOutlined";
+import { default as QuestionCircleOutlined } from "@ant-design/icons/QuestionCircleOutlined";
 
-type IconType = "CloseOutlined" | "MenuOutlined";
+type IconType = "CloseOutlined" | "MenuOutlined" | "QuestionCircleOutlined";
 
 const renderIcon = (icon: IconType) => {
   switch (icon) {
@@ -11,6 +12,8 @@ const renderIcon = (icon: IconType) => {
       return <CloseOutlined />;
     case "MenuOutlined":
       return <MenuOutlined />;
+    case "QuestionCircleOutlined":
+      return <QuestionCircleOutlined />;
     default:
       return null;
   }
