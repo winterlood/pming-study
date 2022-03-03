@@ -6,7 +6,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import { API_GetProcessedPostPage } from "lib/server/post-page";
-import { getOpenGraphImage } from "lib/server/opengraph";
+import {
+  getStudyOpenGraphImageURL,
+} from "lib/server/opengraph";
 import { getWholeBlock } from "lib/server/notion";
 
 import BlockViewer from "components/Common/BlockViewer";
@@ -23,13 +25,14 @@ import PaddingContainer from "components/Common/PaddingContainer";
 type Props = {
   page: app_types.ProcessedPageWithStudyPostWithRelatedStudy;
   blocks: notion_types.Block[];
+  ogImageUrl: string;
 };
 
 // COMPONENT
 
 const Post = (props: Props) => {
   const router = useRouter();
-  const { page, blocks } = props;
+  const { page, blocks, ogImageUrl } = props;
 
   const navigateToStudy = () => {
     router.push(`/study/${page.related_study.id}/overview`);
@@ -39,16 +42,12 @@ const Post = (props: Props) => {
     return <DetailPageSkeleton />;
   }
 
-  const ogImage = getOpenGraphImage(blocks);
-
   return (
     <div className={style.container}>
       <MetaHead
         title={page.post_title}
         description={page.related_study.study_introduce}
-        thumbnail={
-          ogImage ? ogImage : page.related_study.udemy_lecture_thumbnail_url
-        }
+        thumbnail={ogImageUrl}
       />
       <PaddingContainer>
         <div className={style.header}>
@@ -124,10 +123,14 @@ export const getStaticProps = async (ctx) => {
     getWholeBlock(page_id),
   ]);
 
+  const ogPath = `url=pming/study&study_name=${page.related_study.study_name}&mentor_name=${page.mentor_name}&title=${page.post_title}&mentor_profile_image=${page.mentor_profile_image_url}&type=post`;
+  const ogImageUrl = getStudyOpenGraphImageURL(ogPath);
+
   return {
     props: {
       page: page,
       blocks: blocks,
+      ogImageUrl: ogImageUrl,
     },
     revalidate: 1,
   };

@@ -15,6 +15,11 @@ const nextConfig = {
         ? process.env.BASE_URL_LOCAL
         : process.env.BASE_URL_PRODUCTION,
 
+    OG_GENERATOR_URL:
+      process.env.NODE_ENV === "development"
+        ? process.env.OG_GENERATOR_URL_LOCAL
+        : process.env.OG_GENERATOR_URL_PRODUCTION,
+
     /*
      * INTEGRATION KEYS
      */

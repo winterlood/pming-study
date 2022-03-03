@@ -1,23 +1,25 @@
 import React, { useCallback, useState } from "react";
 import style from "./recruit.module.scss";
-import PaddingContainer from "components/Common/PaddingContainer";
-import { getWholeBlock } from "lib/server/notion";
-import BlockViewer from "components/Common/BlockViewer";
 import { api_types, app_types, notion_types } from "@types";
-import Comments from "components/Common/Comment";
-import { API_GetStudyPage } from "lib/server/study-page";
-import { getLocaleEndDate } from "lib/client/study";
-import ApplyStudyModal from "components/Study/ApplyStudyModal";
-import { message, Button } from "antd";
-import { POST_applyStudy } from "lib/client/api";
 import { useRouter } from "next/router";
+import { message, Button } from "antd";
+
+// COMPONENTS
+import ApplyStudyModal from "components/Study/ApplyStudyModal";
+import PaddingContainer from "components/Common/PaddingContainer";
+import BlockViewer from "components/Common/BlockViewer";
+import Comments from "components/Common/Comment";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import MetaHead from "components/Common/MetaHead";
-import { getStudyPageOpenGraphImage } from "lib/server/opengraph";
 
-// TYPES
+// IMPORT LIBS
+import { POST_applyStudy } from "lib/client/api";
+import { getWholeBlock } from "lib/server/notion";
+import { getLocaleEndDate } from "lib/client/study";
+import { API_GetStudyPage } from "lib/server/study-page";
+import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
 
 // COMPONENT
 
@@ -52,7 +54,7 @@ const Study = (props: Props) => {
         });
         toggleModal();
       },
-      onFail: (err) => {
+      onFail: () => {
         message.error({
           content: "스터디 신청에 실패하였습니다 😥",
           style: {
@@ -181,8 +183,8 @@ export const getStaticProps = async (ctx) => {
     };
   }
 
-  const ogPath = `mentor_name=${page.mentor_name}&title=${page.study_name}&mentor_profile_image=${page.mentor_profile_image_url}&type=study`;
-  const ogImageUrl = await getStudyPageOpenGraphImage(ogPath);
+  const ogPath = `url=pming/study&mentor_name=${page.mentor_name}&title=${page.study_name}&mentor_profile_image=${page.mentor_profile_image_url}&type=study`;
+  const ogImageUrl = getStudyOpenGraphImageURL(ogPath);
 
   return {
     props: {

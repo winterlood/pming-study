@@ -139,7 +139,7 @@ export const API_GetProcessedPostPageList = async (): Promise<
 
 export const API_GetProcessedPostPage = async (
   page_id: string
-): Promise<app_types.ProcessedPageWithStudyPost> => {
+): Promise<app_types.ProcessedPageWithStudyPostWithRelatedStudy> => {
   const raw_post_page = (await getPage(
     page_id
   )) as unknown as notion_types.PageWithPost;
