@@ -6,9 +6,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 import { API_GetProcessedPostPage } from "lib/server/post-page";
-import {
-  getStudyOpenGraphImageURL,
-} from "lib/server/opengraph";
+import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
 import { getWholeBlock } from "lib/server/notion";
 
 import BlockViewer from "components/Common/BlockViewer";
@@ -123,7 +121,7 @@ export const getStaticProps = async (ctx) => {
     getWholeBlock(page_id),
   ]);
 
-  const ogPath = `url=pming/study&study_name=${page.related_study.study_name}&mentor_name=${page.mentor_name}&title=${page.post_title}&mentor_profile_image=${page.mentor_profile_image_url}&type=post`;
+  const ogPath = `url=pming/study&study_name=${page.related_study.study_name}&mentor_name=${page.related_study.mentor_name}&title=${page.post_title}&mentor_profile_image=${page.related_study.mentor_profile_image_url}&type=post`;
   const ogImageUrl = getStudyOpenGraphImageURL(ogPath);
 
   return {
