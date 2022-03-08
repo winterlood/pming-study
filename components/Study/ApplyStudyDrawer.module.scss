@@ -15,12 +15,21 @@
     }
   }
 
+  .body {
+    margin-bottom: 50px;
+  }
+
   .submit_warpper {
     button {
       width: 100%;
       height: 50px;
       font-weight: bold;
     }
+    margin-bottom: 50px;
+  }
+  .privacy_wrapper {
+    font-size: var(--font_5);
+    color: var(--gray500);
   }
 }
 
@@ -43,6 +52,7 @@
   input,
   textarea {
     font-size: 16px;
+    padding: 10px;
   }
   textarea {
     height: 180px;
