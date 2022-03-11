@@ -1,5 +1,5 @@
 import { app_types, notion_types } from "@types";
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./Post.module.scss";
 import dynamic from "next/dynamic";
 
@@ -18,6 +18,8 @@ import Tag from "components/Common/Tag";
 import StripeBanner from "components/Home/StripeBanner";
 import PaddingContainer from "components/Common/PaddingContainer";
 
+import moment from "moment-timezone";
+
 // LAZY
 const Comments = dynamic(() => import("components/Common/Comment"), {
   ssr: false,
@@ -29,17 +31,28 @@ type Props = {
   page: app_types.ProcessedPageWithStudyPostWithRelatedStudy;
   blocks: notion_types.Block[];
   ogImageUrl: string;
+  lastFetch: string;
 };
 
 // COMPONENT
 
 const Post = (props: Props) => {
+  const { page, blocks, ogImageUrl, lastFetch } = props;
   const router = useRouter();
-  const { page, blocks, ogImageUrl } = props;
 
   const navigateToStudy = () => {
     router.push(`/study/${page.related_study.id}/overview`);
   };
+
+  useEffect(() => {
+    const serverMoment = moment(lastFetch).tz("Asia/Seoul");
+    const clientMoment = moment().tz("Asia/Seoul");
+    const minuteDiff = clientMoment.diff(serverMoment, "minutes");
+    console.log(`last update before ${minuteDiff} minutes`);
+    if (minuteDiff >= 60) {
+      router.replace(router.asPath);
+    }
+  }, []);
 
   if (router.isFallback) {
     return <DetailPageSkeleton />;
@@ -126,6 +139,8 @@ export const getStaticProps = async (ctx) => {
     getWholeBlock(page_id),
   ]);
 
+  const lastFetch = moment().tz("Asia/Seoul").toString();
+
   const ogPath = `url=pming/study&study_name=${page.related_study.study_name}&mentor_name=${page.related_study.mentor_name}&title=${page.post_title}&mentor_profile_image=${page.related_study.mentor_profile_image_url}&type=post`;
   const ogImageUrl = getStudyOpenGraphImageURL(ogPath);
 
@@ -134,6 +149,7 @@ export const getStaticProps = async (ctx) => {
       page: page,
       blocks: blocks,
       ogImageUrl: ogImageUrl,
+      lastFetch: lastFetch,
     },
     revalidate: 1,
   };

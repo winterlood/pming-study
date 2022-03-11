@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import style from "./recruit.module.scss";
 import { api_types, app_types, notion_types } from "@types";
 import { useRouter } from "next/router";
@@ -20,7 +20,8 @@ import { getLocaleEndDate } from "lib/client/study";
 import { API_GetStudyPage, API_GetRawStudyPage } from "lib/server/study-page";
 import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
 import Section from "components/Study/Section";
-import Link from "next/link";
+
+import moment from "moment-timezone";
 
 // LAZY
 const ApplyStudyDrawer = dynamic(
@@ -38,13 +39,24 @@ interface Props {
   page: app_types.ProcessedPageWithStudy;
   blocks: notion_types.Block[];
   ogImageUrl: string;
+  lastFetch: string;
 }
 
 const Study = (props: Props) => {
-  const { page, blocks } = props;
+  const { page, blocks, lastFetch } = props;
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const toggleModal = useCallback(() => setIsOpen((v) => !v), []);
+
+  useEffect(() => {
+    const serverMoment = moment(lastFetch).tz("Asia/Seoul");
+    const clientMoment = moment().tz("Asia/Seoul");
+    const minuteDiff = clientMoment.diff(serverMoment, "minutes");
+    console.log(`last update before ${minuteDiff} minutes`);
+    if (minuteDiff >= 60) {
+      router.replace(router.asPath);
+    }
+  }, []);
 
   const submit = async (
     applyData: Partial<api_types.StudyApplyRequestBody>
@@ -137,7 +149,6 @@ const Study = (props: Props) => {
                 {page.study_max_member_count}명
               </span>
             </div>
-
             {/* <div className={style.info_item}>
               <span className={style.info_label}>현재 신청자</span>
               <span className={style.info_value}>{page.apply_count} 명</span>
@@ -312,6 +323,8 @@ export const getStaticProps = async (ctx) => {
     getWholeBlock(page_id),
   ]);
 
+  const lastFetch = moment().tz("Asia/Seoul").toString();
+
   if (page.study_status in ["INPROGRESS", "CLOSE"]) {
     return {
       redirect: { destination: `/study/${page_id}/overview` },
@@ -326,6 +339,7 @@ export const getStaticProps = async (ctx) => {
       page: page,
       blocks: blocks,
       ogImageUrl,
+      lastFetch,
     },
     revalidate: 1,
   };
