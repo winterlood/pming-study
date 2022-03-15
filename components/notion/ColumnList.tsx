@@ -15,7 +15,6 @@ interface Props extends notion_types.ColumnListItem {}
 // COMPONENT
 
 const ColumnList = (props: Props) => {
-  console.log(style.container);
   return (
     <div className={style.container}>
       {props.column_list.children.map((it) => (

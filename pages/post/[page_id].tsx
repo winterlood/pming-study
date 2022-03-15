@@ -45,83 +45,95 @@ const Post = (props: Props) => {
   };
 
   useEffect(() => {
-    const serverMoment = moment(lastFetch).tz("Asia/Seoul");
-    const clientMoment = moment().tz("Asia/Seoul");
-    const minuteDiff = clientMoment.diff(serverMoment, "minutes");
-    console.log(`last update before ${minuteDiff} minutes`);
-    if (minuteDiff >= 60) {
-      router.replace(router.asPath);
+    if (!router.isFallback) {
+      console.log(router.isFallback);
+      const serverMoment = moment(lastFetch).tz("Asia/Seoul");
+      const clientMoment = moment().tz("Asia/Seoul");
+      const minuteDiff = clientMoment.diff(serverMoment, "minutes");
+      console.log(`last update before ${minuteDiff} minutes`);
+      if (minuteDiff >= 60) {
+        router.replace(router.asPath);
+      } else {
+        console.log("not refresh page");
+      }
     }
-  }, []);
+  }, [lastFetch, router, router.isFallback]);
 
   if (router.isFallback) {
     return <DetailPageSkeleton />;
-  }
-
-  return (
-    <div className={style.container}>
-      <MetaHead
-        title={page.post_title}
-        description={page.related_study.study_introduce}
-        thumbnail={ogImageUrl}
-      />
-      <PaddingContainer>
-        <div className={style.header}>
-          <div className={style.lecture_tag_wapper}>
-            <Tag type="primary" onClick={navigateToStudy}>
-              {page.related_study.study_name}
-            </Tag>
-          </div>
-          <div className={style.title_wrapper}>
-            <h1>{page.post_title}</h1>
-          </div>
-          <div className={style.meta_wrapper}>
-            <div className={style.time_wrapper}>
-              <div>작성 : {page.created_time}</div>
-              <div>수정 : {page.last_edited_time}</div>
+  } else {
+    return (
+      <div className={style.container}>
+        <MetaHead
+          title={page.post_title}
+          description={page.related_study.study_introduce}
+          thumbnail={ogImageUrl}
+        />
+        <button
+          onClick={() => {
+            router.replace(router.asPath);
+          }}
+        >
+          button
+        </button>
+        <PaddingContainer>
+          <div className={style.header}>
+            <div className={style.lecture_tag_wapper}>
+              <Tag type="primary" onClick={navigateToStudy}>
+                {page.related_study.study_name}
+              </Tag>
+            </div>
+            <div className={style.title_wrapper}>
+              <h1>{page.post_title}</h1>
+            </div>
+            <div className={style.meta_wrapper}>
+              <div className={style.time_wrapper}>
+                <div>작성 : {page.created_time}</div>
+                <div>수정 : {page.last_edited_time}</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className={style.cover_wrapper}></div>
+          <div className={style.cover_wrapper}></div>
 
-        <div className={style.article_wrapper}>
-          <BlockViewer blocks={blocks} />
-        </div>
-
-        <div className={style.banner_wrapper}>
-          <StripeBanner
-            title="이런 멋진 스터디, 직접 운영하고 싶으신가요?"
-            descript="프밍 클래스와 함께 스터디 멘토가 되어보세요!"
-            image_url=""
-            isExternalPath={true}
-            path="https://devstu-udemy.netlify.app/"
-          />
-        </div>
-
-        <div className={style.comment_wrapper}>
-          <Comments />
-        </div>
-
-        <div className={style.related_post_wrapper}>
-          <div className={style.head}>
-            이 포스트는
-            <br />
-            <Link href={`/study/${page.related_study.id}/overview`} passHref>
-              <a>
-                {'"'}
-                {page.related_study.study_name}
-                {'"'}
-              </a>
-            </Link>
-            &nbsp;스터디의 진행 결과입니다
+          <div className={style.article_wrapper}>
+            <BlockViewer blocks={blocks} />
           </div>
-          <div className={style.main}>
-            <StudyInfoItem {...page.related_study} />
+
+          <div className={style.banner_wrapper}>
+            <StripeBanner
+              title="이런 멋진 스터디, 직접 운영하고 싶으신가요?"
+              descript="프밍 클래스와 함께 스터디 멘토가 되어보세요!"
+              image_url=""
+              isExternalPath={true}
+              path="https://devstu-udemy.netlify.app/"
+            />
           </div>
-        </div>
-      </PaddingContainer>
-    </div>
-  );
+
+          <div className={style.comment_wrapper}>
+            <Comments />
+          </div>
+
+          <div className={style.related_post_wrapper}>
+            <div className={style.head}>
+              이 포스트는
+              <br />
+              <Link href={`/study/${page.related_study.id}/overview`} passHref>
+                <a>
+                  {'"'}
+                  {page.related_study.study_name}
+                  {'"'}
+                </a>
+              </Link>
+              &nbsp;스터디의 진행 결과입니다
+            </div>
+            <div className={style.main}>
+              <StudyInfoItem {...page.related_study} />
+            </div>
+          </div>
+        </PaddingContainer>
+      </div>
+    );
+  }
 };
 
 export const getStaticPaths = async () => {

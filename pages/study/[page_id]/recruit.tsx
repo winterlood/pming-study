@@ -49,14 +49,19 @@ const Study = (props: Props) => {
   const toggleModal = useCallback(() => setIsOpen((v) => !v), []);
 
   useEffect(() => {
-    const serverMoment = moment(lastFetch).tz("Asia/Seoul");
-    const clientMoment = moment().tz("Asia/Seoul");
-    const minuteDiff = clientMoment.diff(serverMoment, "minutes");
-    console.log(`last update before ${minuteDiff} minutes`);
-    if (minuteDiff >= 60) {
-      router.replace(router.asPath);
+    if (!router.isFallback) {
+      console.log(router.isFallback);
+      const serverMoment = moment(lastFetch).tz("Asia/Seoul");
+      const clientMoment = moment().tz("Asia/Seoul");
+      const minuteDiff = clientMoment.diff(serverMoment, "minutes");
+      console.log(`last update before ${minuteDiff} minutes`);
+      if (minuteDiff >= 60) {
+        router.replace(router.asPath);
+      } else {
+        console.log("not refresh page");
+      }
     }
-  }, []);
+  }, [lastFetch, router, router.isFallback]);
 
   const submit = async (
     applyData: Partial<api_types.StudyApplyRequestBody>
