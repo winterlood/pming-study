@@ -46,7 +46,6 @@ const Post = (props: Props) => {
 
   useEffect(() => {
     if (!router.isFallback) {
-      console.log(router.isFallback);
       const serverMoment = moment(lastFetch).tz("Asia/Seoul");
       const clientMoment = moment().tz("Asia/Seoul");
       const minuteDiff = clientMoment.diff(serverMoment, "minutes");
@@ -69,13 +68,6 @@ const Post = (props: Props) => {
           description={page.related_study.study_introduce}
           thumbnail={ogImageUrl}
         />
-        <button
-          onClick={() => {
-            router.replace(router.asPath);
-          }}
-        >
-          button
-        </button>
         <PaddingContainer>
           <div className={style.header}>
             <div className={style.lecture_tag_wapper}>
