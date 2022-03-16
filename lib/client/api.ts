@@ -55,3 +55,19 @@ export const GET_studyApplicant = async (option: GetApplicantOption) => {
       onFail(err);
     });
 };
+
+interface GetPageOption extends ApiOption {
+  page_id: string;
+}
+export const GET_pageBlocks = async (option: GetPageOption) => {
+  const { page_id, onSuccess, onFail } = option;
+  axios
+    .get(`/api/blocks/?page_id=${page_id}`)
+    .then((res) => {
+      console.log(res);
+      onSuccess(res);
+    })
+    .catch((err) => {
+      onFail(err);
+    });
+};

@@ -7,21 +7,23 @@ import { message, Button } from "antd";
 
 // COMPONENTS
 import PaddingContainer from "components/Common/PaddingContainer";
-import BlockViewer from "components/Common/BlockViewer";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import MetaHead from "components/Common/MetaHead";
 
 // IMPORT LIBS
-import { POST_applyStudy } from "lib/client/api";
-import { getWholeBlock } from "lib/server/notion";
+import { GET_pageBlocks, POST_applyStudy } from "lib/client/api";
 import { getLocaleEndDate } from "lib/client/study";
-import { API_GetStudyPage, API_GetRawStudyPage } from "lib/server/study-page";
+import { API_GetStudyPage } from "lib/server/study-page";
 import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
 import Section from "components/Study/Section";
+import { ExtendedRecordMap } from "notion-types";
 
+import { getPageBlocks } from "lib/server/get-page-blocks";
+import BlockRenderer from "components/Common/BlockRenderer";
 import moment from "moment-timezone";
+import axios from "axios";
 
 // LAZY
 const ApplyStudyDrawer = dynamic(
@@ -37,7 +39,7 @@ const Comments = dynamic(() => import("components/Common/Comment"), {
 
 interface Props {
   page: app_types.ProcessedPageWithStudy;
-  blocks: notion_types.Block[];
+  blocks: ExtendedRecordMap;
   ogImageUrl: string;
   lastFetch: string;
 }
@@ -47,21 +49,6 @@ const Study = (props: Props) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const toggleModal = useCallback(() => setIsOpen((v) => !v), []);
-
-  useEffect(() => {
-    if (!router.isFallback) {
-      console.log(router.isFallback);
-      const serverMoment = moment(lastFetch).tz("Asia/Seoul");
-      const clientMoment = moment().tz("Asia/Seoul");
-      const minuteDiff = clientMoment.diff(serverMoment, "minutes");
-      console.log(`last update before ${minuteDiff} minutes`);
-      if (minuteDiff >= 60) {
-        router.replace(router.asPath);
-      } else {
-        console.log("not refresh page");
-      }
-    }
-  }, [lastFetch, router, router.isFallback]);
 
   const submit = async (
     applyData: Partial<api_types.StudyApplyRequestBody>
@@ -108,7 +95,6 @@ const Study = (props: Props) => {
         description={page.study_introduce}
         thumbnail={props.ogImageUrl || page.udemy_lecture_thumbnail_url}
       />
-
       <ApplyStudyDrawer
         isOpen={isOpen}
         onClose={toggleModal}
@@ -133,7 +119,6 @@ const Study = (props: Props) => {
             </div>
           }
         />
-
         <Section className={style.info_section} title={"🎯 스터디 요약"}>
           <div className={style.info_item_wrapper}>
             <div className={style.info_item}>
@@ -154,10 +139,6 @@ const Study = (props: Props) => {
                 {page.study_max_member_count}명
               </span>
             </div>
-            {/* <div className={style.info_item}>
-              <span className={style.info_label}>현재 신청자</span>
-              <span className={style.info_value}>{page.apply_count} 명</span>
-            </div> */}
           </div>
         </Section>
 
@@ -192,7 +173,11 @@ const Study = (props: Props) => {
         </Section>
 
         <Section className={style.article_section}>
-          <BlockViewer blocks={blocks} />
+          <BlockRenderer
+            pageId={page.id}
+            blocks={blocks}
+            lastFetch={lastFetch}
+          />
         </Section>
 
         <Section
@@ -323,12 +308,10 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx) => {
   const { page_id } = ctx.params;
 
-  const [page, blocks] = await Promise.all([
+  const [blocks, page] = await Promise.all([
+    getPageBlocks(page_id),
     API_GetStudyPage(page_id),
-    getWholeBlock(page_id),
   ]);
-
-  const lastFetch = moment().tz("Asia/Seoul").toString();
 
   if (page.study_status in ["INPROGRESS", "CLOSE"]) {
     return {
@@ -338,13 +321,14 @@ export const getStaticProps = async (ctx) => {
 
   const ogPath = `url=pming/study&mentor_name=${page.mentor_name}&title=${page.study_name}&mentor_profile_image=${page.mentor_profile_image_url}&type=study`;
   const ogImageUrl = getStudyOpenGraphImageURL(ogPath);
+  const lastFetch = moment().tz("Asia/Seoul").toString();
 
   return {
     props: {
-      page: page,
-      blocks: blocks,
-      ogImageUrl,
+      page,
+      blocks,
       lastFetch,
+      ogImageUrl,
     },
     revalidate: 1,
   };
