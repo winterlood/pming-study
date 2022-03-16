@@ -8,16 +8,15 @@ const ax = axios.create({
   },
 });
 
-interface ApiOption {
-  onSuccess: (res?: any) => void;
-  onFail: (err?: any) => void;
-}
-
 /*
  * [POST]
  * APPLY STUDY
  * 스터디 지원
  */
+interface ApiOption {
+  onSuccess: (res?: any) => void;
+  onFail: (err?: any) => void;
+}
 
 interface ApplyStudyOption extends ApiOption {
   requestBody: api_types.StudyApplyRequestBody;
@@ -55,6 +54,12 @@ export const GET_studyApplicant = async (option: GetApplicantOption) => {
       onFail(err);
     });
 };
+
+/*
+ * [GET]
+ * GET PAGE BLOCKS
+ * 페이지 블럭 가져오기
+ */
 
 interface GetPageOption extends ApiOption {
   page_id: string;
