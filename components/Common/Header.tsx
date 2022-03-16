@@ -33,7 +33,7 @@ const MenuList: MenuList[] = [
     display: "스터디 멘토 지원",
     isExternalPath: true,
   },
-  { link: "/help", display: "스터디 멘토 가이드" },
+  { link: "/guide", display: "스터디 멘토 가이드" },
 ];
 
 const Header = () => {
