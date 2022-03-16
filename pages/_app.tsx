@@ -35,6 +35,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <meta
+          name="naver-site-verification"
+          content="7766b2227c25cedd3350fb640dc1bb666a11500a"
+        />
         <link rel="shortcut icon" href={favico.src} type="image/x-icon" />
         <ExternalScript />
       </Head>
