@@ -17,13 +17,11 @@ import Icon from "./Icon";
 // TYPES
 
 // COMPONENT
-
 interface MenuList {
   link: string;
   display: string;
   isExternalPath?: boolean;
 }
-
 const MenuList: MenuList[] = [
   { link: "/", display: "홈" },
   { link: "/study", display: "스터디" },
@@ -35,7 +33,6 @@ const MenuList: MenuList[] = [
   },
   { link: "/guide", display: "스터디 멘토 가이드" },
 ];
-
 const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -63,7 +60,6 @@ const Header = () => {
               </a>
             </Link>
           </div>
-
           <nav className={style.pc_nav}>
             {MenuList.map((it) => (
               <Link key={it.link} href={it.link}>
@@ -76,7 +72,6 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-
           <div onClick={toggleDrawer} className={style.mobile_nav}>
             <Icon icon="MenuOutlined" />
           </div>
