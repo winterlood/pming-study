@@ -18,6 +18,7 @@ import { getPageBlocks } from "lib/server/get-page-blocks";
 import { ExtendedRecordMap } from "notion-types";
 import BlockRenderer from "components/Common/BlockRenderer";
 import moment from "moment-timezone";
+import { pingSearchConsole } from "lib/server/ping-search-console";
 // LAZY
 const Comments = dynamic(() => import("components/Common/Comment"), {
   ssr: false,
@@ -132,6 +133,9 @@ export const getStaticProps = async (ctx) => {
   const lastFetch = moment().tz("Asia/Seoul").toString();
   const ogPath = `url=pming/study&study_name=${page.related_study.study_name}&mentor_name=${page.related_study.mentor_name}&title=${page.post_title}&mentor_profile_image=${page.related_study.mentor_profile_image_url}&type=post`;
   const ogImageUrl = getStudyOpenGraphImageURL(ogPath);
+  pingSearchConsole(
+    `https://www.google.com/ping?sitemap${process.env.BASE_URL}/post/${page_id}`
+  );
   return {
     props: {
       page,

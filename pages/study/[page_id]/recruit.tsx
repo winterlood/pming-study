@@ -21,9 +21,9 @@ import Section from "components/Study/Section";
 import { ExtendedRecordMap } from "notion-types";
 
 import { getPageBlocks } from "lib/server/get-page-blocks";
-import BlockRenderer from "components/Common/BlockRenderer";
 import moment from "moment-timezone";
-import axios from "axios";
+import { pingSearchConsole } from "lib/server/ping-search-console";
+import BlockRenderer from "components/Common/BlockRenderer";
 
 // LAZY
 const ApplyStudyDrawer = dynamic(
@@ -323,6 +323,11 @@ export const getStaticProps = async (ctx) => {
   const ogImageUrl = getStudyOpenGraphImageURL(ogPath);
   const lastFetch = moment().tz("Asia/Seoul").toString();
 
+  pingSearchConsole(
+    `https://www.google.com/ping?sitemap${
+      process.env.BASE_URL
+    }/study/${page_id}/${page.study_status === "OPEN" ? "recruit" : "overview"}`
+  );
   return {
     props: {
       page,
