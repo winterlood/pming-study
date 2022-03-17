@@ -1,34 +1,130 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![](https://i.imgur.com/kUGlLpA.png)
 
-## Getting Started
+# ⏺️ 프밍 스터디를 소개합니다
 
-First, run the development server:
+프밍 스터디는 Udemy 글로벌 공식 파트너 웅진 씽크빅과 함께하는
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+활발하고 건강한 프로그래밍 스터디 문화를 위해 강의료를 지원하는 새로운 스터디 플랫폼입니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 스터디를 리딩하는 멘토에게는 수강료 전액과 20만원의 리워드를 지급합니다.
+- 스터디에 참여하는 멘티에게는 만원대 가격의 최저가로 강의를 구매할 수 있도록 수강료를 지원합니다.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+프밍 스터디는 Udemy 강의중 【글로벌 Best】 강의에 대한 수강료를 지원합니다.
+강의의 목록은 아래의 링크를 참고 해 주세요!
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[](https://www.udemy.com/courses/search/?q=%E3%80%90%EA%B8%80%EB%A1%9C%EB%B2%8C+Best%E3%80%91&sort=most-reviewed&src=ukw)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<br/>
+<br/>
+<br/>
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+**🙋‍♂️ 질문 1.**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **프밍 스터디는 뭐가 다른가요?**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+우리는 더 좋은 환경에서 더 많은 개발자들이 함께 학습하는 것을 목표로 합니다.
 
-## Deploy on Vercel
+프밍 스터디의 강의료 지원을 통해 활발하고 건강한 스터디를 지원하고
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+스터디의 결과인 **`스터디 포스트`**를 퍼블릭하게 공유하도록 하여 직접적으로 스터디에 참여하지 않은 사람들에게도 간접적인 정보를 제공합니다.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+**🙋‍♂️ 질문 2.**
+
+### 프밍에서 직접 스터디를 운영하나요?
+
+결론적으로 말하자면 그렇지 않습니다.
+
+프밍 스터디는 스터디를 직접 진행하지 않고, 유데미 강의 등의 스터디에 필요한 자원을 제공합니다.
+
+스터디의 직접적인 진행과 운영은 프밍 스터디가 선별한 **`스터디 멘토`** 분들이 합니다.
+
+---
+
+**🙋‍♂️ 질문 3.**
+
+### 프밍 스터디 멘토는 무슨 역할을 하나요?
+
+구체적으로 스터디 정기 밋업 일정 조율, `**스터디 포스트**` 작성을 관리합니다.
+
+프밍 스터디에서 `**멘토 != 강사**` 입니다.
+
+프밍 스터디의 학습 멘토는 일정 조율 및 학습 범위 설정으로 단지 스터디를 리드 하기만 할 뿐
+
+학습적으로 또 지식적으로 월등해야 하는 건 아니며 그럴 필요도 없습니다.
+
+---
+
+**🙋‍♂️ 질문 4.**
+
+### **스터디 포스트란무엇인가요?**
+
+스터디 포스트란 강의를 수강하면서 학습한 내용을 정리한 문서를 의미합니다.
+
+**`노션`**으로 작성해주신 스터디 포스트는 프밍 스터디의 포스트에 업로드 되어 퍼블릭 하게 공유됩니다.
+
+---
+
+**🙋‍♂️ 질문 5.**
+
+### 누가 멘토가 되나요?
+
+프밍 스터디의 멘토는 알려주는 **`강사`**가 아닌 같이 배워나가는 `**리더**`입니다.
+
+따라서 다양한 사람들과 함께 스터디하고 싶은 분 이라면 누구든지 멘토가 되실 수 있습니다
+
+⭐ **멘토에게는 아래와 같은 리워드가 제공됩니다.**
+
+- **스터디 할 강의 1개, 원하는 강의 2개의 강의료 전액 지원**
+- **스터디 종료시 20만원 지급**
+
+---
+
+**🙋‍♂️ 질문 6.**
+
+### 멘토는 어떻게 될 수 있나요?
+
+[스터디 멘토 신청](https://www.notion.so/580031d0f7d34268bcbbefe23b15e42e)
+
+이 페이지를 참고하셔서 멘토 진행이 가능한 링크로 이동 해 주세요
+
+---
+
+<br/>
+<br/>
+<br/>
+
+# ⏺️ (멘토) 스터디 진행 프로세스 및 상세 가이드
+
+<aside>
+🧊 **1. 스터디 멘토 신청 및 선정**
+
+</aside>
+
+[스터디 멘토 신청](https://www.notion.so/580031d0f7d34268bcbbefe23b15e42e)
+
+<aside>
+🧊 **2. 스터디 개설 및 멘티 모집**
+
+</aside>
+
+[스터디 개설](https://www.notion.so/3716863afd23407c97e8bb1d7c0a0d11)
+
+[스터디 멘티 모집 및 선발](https://www.notion.so/310aa4ad965c406f803c86d5d056f8bd)
+
+<aside>
+🧊 **3. 스터디 진행**
+
+</aside>
+
+[스터디 진행](https://www.notion.so/2837e3881ce0481cbb433e330b29100e)
+
+<aside>
+🧊 **4. 스터디 리워드**
+
+</aside>
+
+[스터디 리워드](https://www.notion.so/a8e7dcc53c6649ab91e86c02f7c6cc02)
