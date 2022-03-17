@@ -4,6 +4,7 @@ import { app_types } from "@types";
 import ItemGrid from "components/Common/ItemGrid";
 import StudyStatusTag from "components/Common/StudyStatusTag";
 import Link from "next/link";
+import EmptyBlock from "components/Common/EmptyBlock";
 
 // GLOBAL TYPES
 
@@ -71,9 +72,11 @@ const PostGrid = (props: Props) => {
     <div className={style.container}>
       {state.pageFilter === "study" ? (
         <div className={style.study_list_wrapper}>
-          {state.data.map((it) => (
-            <PostWithStudyItem key={it.id} {...it} />
-          ))}
+          {state.data.length === 0 ? (
+            <EmptyBlock type="STUDY_TOTAL" />
+          ) : (
+            state.data.map((it) => <PostWithStudyItem key={it.id} {...it} />)
+          )}
         </div>
       ) : (
         <ItemGrid

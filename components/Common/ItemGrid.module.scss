@@ -9,19 +9,25 @@
     margin-bottom: 15px;
   }
   .body_wrapper {
-    display: grid;
-
-    @media (max-width: 450px) {
+    .empty_wrapper {
+      width: 100%;
       display: flex;
-      flex-direction: column;
-      gap: 50px;
+      justify-content: center;
     }
-    @media (max-width: 800px) {
-      grid-template-columns: repeat(2, 1fr);
+    .grid_wrapper {
+      display: grid;
+      @media (max-width: 450px) {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+      }
+      @media (max-width: 800px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (min-width: 801px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      gap: 20px;
     }
-    @media (min-width: 801px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    gap: 20px;
   }
 }

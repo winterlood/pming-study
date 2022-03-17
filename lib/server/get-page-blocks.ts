@@ -3,8 +3,13 @@ import { NotionAPI } from "notion-client";
 const api = new NotionAPI();
 
 export const getPageBlocks = async (pageId) => {
-  const recordMap = await api.getPage(pageId);
-  return recordMap;
+  try {
+    const recordMap = await api.getPage(pageId);
+    return recordMap;
+  } catch (err) {
+    console.log(err);
+    return undefined;
+  }
 };
 
 export const getPageInfo = async (pageId) => {

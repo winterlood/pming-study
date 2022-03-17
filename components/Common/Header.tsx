@@ -27,7 +27,7 @@ const MenuList: MenuList[] = [
   { link: "/study", display: "스터디" },
   { link: "/post", display: "포스트" },
   {
-    link: "https://devstu-udemy.netlify.app/",
+    link: "https://applymentor.pming.kr",
     display: "스터디 멘토 지원",
     isExternalPath: true,
   },
