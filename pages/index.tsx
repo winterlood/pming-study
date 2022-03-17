@@ -9,6 +9,7 @@ import { Button } from "antd";
 
 import banner from "public/image/banner.png";
 import MetaHead from "components/Common/MetaHead";
+import Link from "next/link";
 
 interface Props {
   pages: app_types.PageList;
@@ -39,7 +40,9 @@ export default function Home(props: Props) {
             </div>
 
             <div className={style.btn_wrapper}>
-              <Button type="primary">시작하기</Button>
+              <Link href={"/study?status=open"}>
+                <Button type="primary">시작하기</Button>
+              </Link>
             </div>
           </div>
 
@@ -55,21 +58,21 @@ export default function Home(props: Props) {
             gridItemList={props.studyListByStatus.open}
           />
         </section>
-        <section className={style.section_grid}>
+        {/* <section className={style.section_grid}>
           <ItemGrid
             title="준비 중인 스터디"
             detailPath="/study?status=ready"
             gridItemType="STUDY"
             gridItemList={props.studyListByStatus.ready}
           />
-        </section>
+        </section> */}
         <section>
           <StripeBanner
             title="멘토는 무료, 멘티는 최저가 수강료 지원"
             descript="선정된 멘토와 멘티에게는 Udemy Global Best 강의료를 지원합니다"
             image_url="https://sb-drops.s3.amazonaws.com/drop/rmopt-602c8a6723dc8-914689400-1613531751.png"
             isExternalPath
-            path="https://devstu-udemy.netlify.app/"
+            path="https://applymentor.pming.kr/"
           />
         </section>
       </PaddingContainer>
@@ -77,7 +80,7 @@ export default function Home(props: Props) {
       <PaddingContainer>
         <section className={style.section_grid}>
           <ItemGrid
-            title="진행 중인 스터디"
+            title="스터디 포스트"
             detailPath="/post"
             gridItemType="POST"
             gridItemList={props.studyPostList}
@@ -89,7 +92,7 @@ export default function Home(props: Props) {
 }
 
 export const getStaticProps = async () => {
-  const SLICE_COUNT = 3;
+  const SLICE_COUNT = 6;
 
   const [studyList, studyPostList] = await Promise.all([
     API_GetStudyPageList(),
@@ -128,6 +131,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       studyListByStatus: studyListByStatus,
+      // studyPostList: [],
       studyPostList: studyPostWithStudy,
     },
     revalidate: 1,
