@@ -25,7 +25,6 @@ const getProcssedStudyPage = (
     mentor_kakao_id,
     apply_count,
   } = rawStudyPage.properties;
-
   return {
     ...rawStudyPage,
     study_id: rawStudyPage.id,

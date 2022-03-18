@@ -19,6 +19,7 @@ import { ExtendedRecordMap } from "notion-types";
 import BlockRenderer from "components/Common/BlockRenderer";
 import moment from "moment-timezone";
 import { pingSearchConsole } from "lib/server/ping-search-console";
+import MentorSummaryBox from "components/Common/MentorSummaryBox";
 // LAZY
 const Comments = dynamic(() => import("components/Common/Comment"), {
   ssr: false,
@@ -63,12 +64,20 @@ const Post = (props: Props) => {
             <div className={style.title_wrapper}>
               <h1>{page.post_title}</h1>
             </div>
+
             <div className={style.meta_wrapper}>
               <div className={style.time_wrapper}>
-                <div>작성 : {page.created_time}</div>
-                <div>수정 : {page.last_edited_time}</div>
+                <div>{new Date(page.created_time).toLocaleString()} 작성</div>
+                <div>{new Date(page.created_time).toLocaleString()} 수정</div>
               </div>
             </div>
+            <MentorSummaryBox
+              mentor_name={page.related_study.mentor_name}
+              mentor_introduce={page.related_study.mentor_introduce}
+              mentor_profile_image_url={
+                page.related_study.mentor_profile_image_url
+              }
+            />
           </div>
           <div className={style.cover_wrapper}></div>
 

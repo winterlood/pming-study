@@ -13,7 +13,7 @@ import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import MetaHead from "components/Common/MetaHead";
 
 // IMPORT LIBS
-import { GET_pageBlocks, POST_applyStudy } from "lib/client/api";
+import { POST_applyStudy } from "lib/client/api";
 import { getLocaleEndDate } from "lib/client/study";
 import { API_GetStudyPage } from "lib/server/study-page";
 import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
@@ -119,6 +119,7 @@ const Study = (props: Props) => {
             </div>
           }
         />
+
         <Section className={style.info_section} title={"🎯 스터디 요약"}>
           <div className={style.info_item_wrapper}>
             <div className={style.info_item}>

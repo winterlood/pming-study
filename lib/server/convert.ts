@@ -4,7 +4,6 @@ export const convertStringProperty = (
   item: notion_types.PagePropertyItem
 ): string => {
   if (!item.type) return "";
-
   switch (item.type) {
     case "title": {
       return item["title"].map((it) => it.plain_text).join(" ");

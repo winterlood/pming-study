@@ -1,8 +1,7 @@
 import { Client } from "@notionhq/client";
-import { api_types } from "@types";
 
 const notionClient = new Client({
-  auth: process.env.NOTION_CLIENT_SIDE_READ_ACCESS_TOKEN,
+  auth: process.env.NOTION_CLIENT_SIDE_WRITE_ACCESS_TOKEN,
 });
 
 export default async function handler(req, res) {
@@ -18,10 +17,10 @@ export default async function handler(req, res) {
       },
     })
     .then((response) => {
-      console.log(response);
       res.status(200).json(response.results);
     })
     .catch((err) => {
-      res.status(400).json({});
+      console.log(err);
+      res.status(400).json(err);
     });
 }

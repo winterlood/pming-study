@@ -39,13 +39,9 @@
           font-size: var(--font_5);
           margin-top: 10px;
         }
-        .post_title {
-          font-size: var(--font_3);
+        .study_name {
+          font-size: var(--font_4);
           font-family: bold;
-        }
-        .post_last_edited_time {
-          font-size: var(--font_6);
-          color: rgb(200, 200, 200);
         }
       }
     }
@@ -54,22 +50,38 @@
       position: absolute;
       bottom: 10%;
       right: 5%;
-
-      width: 40px;
-      height: 40px;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-      }
     }
   }
 
   .body {
-    .study_name {
-      font-weight: bold;
+    display: flex;
+    flex-direction: column;
+
+    .post_title {
+      font-size: var(--font_5);
+      font-family: medium;
       cursor: pointer;
+    }
+    .post_last_edited_time {
+      font-size: var(--font_6);
+      color: var(--gray500);
+      margin-bottom: 10px;
+    }
+    .mentor_wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .image_wrapper {
+        width: 25px;
+        height: 25px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
     }
   }
 }

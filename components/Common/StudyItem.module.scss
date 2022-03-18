@@ -15,8 +15,12 @@
   }
 
   .body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     .study_name {
-      font-weight: bold;
+      font-size: var(--font_5);
+      font-family: bold;
       cursor: pointer;
     }
   }

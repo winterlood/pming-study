@@ -73,6 +73,18 @@ const ApplyStudyDrawer = (props: Props) => {
     }
   }, [props.isOpen]);
 
+  useEffect(() => {
+    if (process.env.NODE_ENV === "development") {
+      setState({
+        applicant_name: "winterlood",
+        applicant_email: "king199777@gmail.com",
+        applicant_kakao_id: "king199777",
+        applicant_reason: "(테스트 요청)제발 뽑아주세요",
+        applicant_github_url: "https://github.com/winterlood",
+      });
+    }
+  }, [props.isOpen]);
+
   const isInputValid = () => {
     if (state.applicant_name.length < 1) {
       alert("이름을 1글자 이상 입력 해 주세요");
@@ -102,13 +114,6 @@ const ApplyStudyDrawer = (props: Props) => {
       }
       return false;
     }
-    // if (state.applicant_github_url.length < 5) {
-    //   alert("gitHub 주소를 정확히 입력 해주세요");
-    //   if (gitHubUrlRef.current) {
-    //     gitHubUrlRef.current.focus();
-    //   }
-    //   return false;
-    // }
     return true;
   };
 
