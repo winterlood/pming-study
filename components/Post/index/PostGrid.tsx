@@ -37,7 +37,7 @@ const PostWithStudyItem = (props: StudyPostData) => {
         />
       </div>
       <div className={style.footer}>
-        <Link href={`/study/${props.id}`} passHref>
+        <Link href={`/study/${props.id}/overview`} passHref>
           <a>스터디 전체 보기</a>
         </Link>
       </div>

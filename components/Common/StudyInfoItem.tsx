@@ -1,5 +1,6 @@
 import { app_types } from "@types";
 import React from "react";
+import MentorSummaryBox from "./MentorSummaryBox";
 import style from "./StudyInfoItem.module.scss";
 import StudyStatusTag from "./StudyStatusTag";
 
@@ -34,18 +35,11 @@ const StudyInfoItem = (props: Props) => {
         >
           <img src={props.udemy_lecture_thumbnail_url} />
         </div>
-        <div className={style.mentor_wrapper}>
-          <div className={style.mentor_img_wrapper}>
-            <img src={props.mentor_profile_image_url} />
-          </div>
-          <div className={style.mentor_info_wrapper}>
-            <div className={style.mentor_name}>{props.mentor_name}</div>
-
-            <div className={style.mentor_descript}>
-              {props.mentor_introduce}
-            </div>
-          </div>
-        </div>
+        <MentorSummaryBox
+          mentor_name={props.mentor_name}
+          mentor_introduce={props.mentor_introduce}
+          mentor_profile_image_url={props.mentor_profile_image_url}
+        />
       </div>
     </div>
   );
