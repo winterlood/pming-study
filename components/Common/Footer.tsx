@@ -40,16 +40,18 @@ const Footer = (props: Props) => {
               />
             </div>
             <div className={style.descript}>
-              {'"프밍 스터디"'}는 대한민국 개발자 커뮤니티 DEVSTU와 Udemy의
-              글로벌 공식 파트너 웅진씽크빅과 함께하는 강의형 스터디
-              플랫폼입니다.
+              {'"프밍 스터디"'}는 22Hours와 Udemy의
+              <br />
+              글로벌 공식 파트너 웅진씽크빅과 함께하는
+              <br />
+              강의형 스터디 플랫폼입니다.
             </div>
           </div>
           <div className={style.info_wrapper}>
             <div className={[style.host_wrapper, style.item_section].join(" ")}>
               <div className={style.head}>주관사</div>
               <div className={style.child_wrapper}>
-                <div className={style.value}>DEVSTU</div>
+                <div className={style.value}>22Hours</div>
                 <div className={style.value}>Udemy Korea</div>
               </div>
             </div>
