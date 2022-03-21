@@ -7,5 +7,5 @@ export const timeForToday = (endDate: Date) => {
   const betweenTimeHour = Math.floor(betweenTime / 60);
   const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
 
-  return `${betweenTimeDay}`;
+  return `${betweenTimeHour}`;
 };

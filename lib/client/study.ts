@@ -39,5 +39,5 @@ export const getStudyStatusTagType = (
 
 export const getLocaleEndDate = (endDateStr: string) => {
   const endDate = new Date(endDateStr);
-  return `마감 ${timeForToday(endDate)}일 전`;
+  return `마감 ${timeForToday(endDate)}시간 전`;
 };
