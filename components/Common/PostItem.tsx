@@ -21,37 +21,20 @@ interface Props extends app_types.ProcessedPageWithStudyPostWithRelatedStudy {}
 const PostItem = (props: Props) => {
   return (
     <div className={style.container}>
-      <Link href={`/post/${props.id}`} passHref>
+      <Link href={`/study/${props.related_study.id}/overview`}>
         <div className={style.head}>
-          <img
-            className={style.lecture_img}
-            src={props.related_study.udemy_lecture_thumbnail_url}
-            alt={props.post_title}
-          />
-          <div className={style.mask}>
-            <div className={style.post_info_wrapper}>
-              <StudyStatusTag studyStatus={props.related_study.study_status} />
-              <div className={style.study_name}>
-                {props.related_study.study_name}
-              </div>
-            </div>
-          </div>
+          <Tag type="default">{props.related_study.study_name}</Tag>
         </div>
       </Link>
-      <div className={style.body}>
-        <Link href={`/post/${props.id}`} passHref>
+      <Link href={`/post/${props.id}`} passHref>
+        <div className={style.body}>
           <div className={style.post_title}>{props.post_title}</div>
-        </Link>
-        <div className={style.post_last_edited_time}>
-          {new Date(props.created_time).toLocaleString()} 작성
-        </div>
-        <div className={style.mentor_wrapper}>
-          <div className={style.image_wrapper}>
-            <img src={props.related_study.mentor_profile_image_url} />
+          <div className={style.last_edited_time}>
+            {new Date(props.created_time).toLocaleString()} 작성
           </div>
-          {props.related_study.mentor_name} 멘토
+          <div className={style.preview}>{props.preview}</div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

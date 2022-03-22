@@ -24,6 +24,7 @@ const getProcssedStudyPage = (
     mentor_email,
     mentor_kakao_id,
     apply_count,
+    study_post_count,
   } = rawStudyPage.properties;
   return {
     ...rawStudyPage,
@@ -53,6 +54,7 @@ const getProcssedStudyPage = (
     mentor_email: convertStringProperty(mentor_email),
     mentor_kakao_id: convertStringProperty(mentor_kakao_id),
     apply_count: convertStringProperty(apply_count),
+    study_post_count: convertStringProperty(study_post_count),
   };
 };
 

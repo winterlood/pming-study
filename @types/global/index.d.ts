@@ -147,6 +147,7 @@ declare module "@types" {
       udemy_lecture_thumbnail_url: PageProperty["url"];
       udemy_lecture_url: PageProperty["url"];
       apply_count: PageProperty["text"];
+      study_post_count: PageProperty["text"];
     }
     interface PageWithStudy extends Page, PageWithMentor {
       properties: PageWithStudyProperty;
@@ -155,6 +156,7 @@ declare module "@types" {
     // POST PAGE (rollup with study)
     interface PageWithPostProperty {
       post_title: PageProperty["text"];
+      preview: PageProperty["text"];
       related_study: PageProperty["relation"];
     }
     interface PageWithPost extends Page {
@@ -175,116 +177,6 @@ declare module "@types" {
       text: {
         content: string;
         link: string;
-      };
-    }
-
-    interface ParagraphItem extends Block {
-      paragraph: {
-        text: TextItemBase[];
-        children?: Block[];
-      };
-    }
-
-    interface HeadingBase extends Block {
-      type: "heading_1" | "heading_2" | "heading_3";
-    }
-    interface HeadingOneItem extends HeadingBase {
-      heading_1: {
-        text: TextItemBase[];
-        children?: Block[];
-      };
-    }
-    interface HeadingTwoItem extends HeadingBase {
-      heading_2: {
-        text: TextItemBase[];
-        children?: Block[];
-      };
-    }
-    interface HeadingThreeItem extends HeadingBase {
-      heading_3: {
-        text: TextItemBase[];
-        children?: Block[];
-      };
-    }
-    type HeadingItem = HeadingOneItem | HeadingTwoItem | HeadingThreeItem;
-
-    interface CodeItem extends Block {
-      code: {
-        caption: any[];
-        language: string;
-        text: TextItemBase[];
-      };
-    }
-
-    interface ColumnItem extends Block {
-      column: {
-        children: Block[];
-      };
-    }
-
-    interface ColumnListItem extends Block {
-      column_list: {
-        children: ColumnItem[];
-      };
-    }
-
-    interface BookmarkItem extends Block {
-      bookmark: {
-        caption: any[];
-        url: string;
-      };
-    }
-
-    interface CalloutItem extends Block {
-      callout: {
-        icon: {
-          type: string;
-          [other: string]: string;
-        };
-        text: TextItemBase[];
-      };
-    }
-
-    // FOR IMAGE BLOCK
-    interface ImagePropertyBase {
-      caption: TextItemBase[];
-      type: "external" | "file";
-    }
-    interface ImagePropertyWithExternal extends ImagePropertyBase {
-      type: "external";
-      external: {
-        url: string;
-      };
-    }
-    interface ImagePropertyWithFile extends ImagePropertyBase {
-      type: "file";
-      file: {
-        expiry_time: string;
-        url: string;
-      };
-    }
-    interface ImageItem extends Block {
-      image: ImagePropertyWithExternal | ImagePropertyWithFile;
-    }
-
-    type ImageItem = ImageItemWithExternal | ImageItemWithFile;
-
-    interface BulletedListItem extends Block {
-      bulleted_list_item: {
-        text: TextItemBase[];
-      };
-    }
-
-    interface NumberedItemList extends Block {
-      numbered_list_item: {
-        text: TextItemBase[];
-      };
-    }
-
-    interface EmbedItem extends Block {
-      embed: {
-        caption: TextItemBase[];
-        url: string;
       };
     }
   }
@@ -366,17 +258,20 @@ declare module "@types" {
       udemy_lecture_thumbnail_url: string;
       udemy_lecture_url: string;
       apply_count: string;
+      study_post_count: string;
     }
 
     interface PageWithPost extends ProcessedPage {
       properties: {
         post_title: { type: string; [key: string]: TextItemBase[] };
+        preview: { type: string; [key: string]: TextItemBase[] };
         related_study: { relation: { id: string }[] } | null;
       };
     }
 
     interface ProcessedPageWithStudyPost extends PageWithPost {
       post_title: string;
+      preview: string;
     }
 
     interface ProcessedPageWithStudyPostWithRelatedStudy

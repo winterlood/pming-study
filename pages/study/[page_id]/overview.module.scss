@@ -1,9 +1,22 @@
 .container {
   .head {
     margin-bottom: 50px;
+
+    .footer_wrapper {
+      section {
+        margin-bottom: 40px;
+      }
+
+      .mentor_label {
+        font-family: bold;
+      }
+    }
   }
 
   .main {
+    .mentor_wrapper {
+      margin-bottom: 50px;
+    }
     .study_info_wrapper {
       margin-bottom: 50px;
       padding-bottom: 50px;
