@@ -1,20 +1,15 @@
 import { app_types } from "@types";
-import BlockRenderer from "components/Common/BlockRenderer";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
-import ItemGrid from "components/Common/ItemGrid";
 import MetaHead from "components/Common/MetaHead";
 import PaddingContainer from "components/Common/PaddingContainer";
 import StudyStatusTag from "components/Common/StudyStatusTag";
-import { getPageBlocks } from "lib/server/get-page-blocks";
 import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
 import { API_GetProcessedPostPageListByStudy } from "lib/server/post-page";
 import { API_GetStudyPage } from "lib/server/study-page";
 import { useRouter } from "next/router";
 import React from "react";
 import style from "./overview.module.scss";
-import moment from "moment-timezone";
-import { ExtendedRecordMap } from "notion-types";
 import PostItemList from "components/Common/PostItemList";
 import MentorSummaryBox from "components/Common/MentorSummaryBox";
 
