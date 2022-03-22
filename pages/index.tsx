@@ -1,7 +1,6 @@
 import { app_types } from "@types";
 import PaddingContainer from "components/Common/PaddingContainer";
 import style from "./index.module.scss";
-import ItemGrid from "components/Common/ItemGrid";
 import { API_GetStudyPageList } from "lib/server/study-page";
 import StripeBanner from "components/Home/StripeBanner";
 import { API_GetProcessedPostPageList } from "lib/server/post-page";
