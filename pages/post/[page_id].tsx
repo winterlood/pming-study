@@ -40,10 +40,6 @@ const Post = (props: Props) => {
   const { page, lastFetch, blocks, ogImageUrl } = props;
   const router = useRouter();
 
-  const navigateToStudy = () => {
-    router.push(`/study/${page.related_study.id}/overview`);
-  };
-
   if (router.isFallback) {
     return <DetailPageSkeleton />;
   } else {
@@ -56,12 +52,11 @@ const Post = (props: Props) => {
         />
         <PaddingContainer>
           <div className={style.header}>
-            <div className={style.lecture_tag_wapper}>
-              <Tag type="primary" onClick={navigateToStudy}>
-                {page.related_study.study_name}
-              </Tag>
-            </div>
             <div className={style.title_wrapper}>
+              스터디 포스트 {">"} &nbsp;
+              <Link href={`/study/${page.related_study.id}/overview`}>
+                <a>{page.related_study.study_name}</a>
+              </Link>
               <h1>{page.post_title}</h1>
             </div>
 

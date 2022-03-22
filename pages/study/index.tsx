@@ -1,9 +1,9 @@
 import { app_types } from "@types";
 import { Skeleton, Tabs } from "antd";
 import DetailPageHeader from "components/Common/DetailPageHeader";
-import ItemGrid from "components/Common/ItemGrid";
 import MetaHead from "components/Common/MetaHead";
 import PaddingContainer from "components/Common/PaddingContainer";
+import StudyItemList from "components/Common/StudyItemList";
 import StripeBanner from "components/Home/StripeBanner";
 import { API_GetStudyPageList } from "lib/server/study-page";
 import { useRouter } from "next/router";
@@ -20,10 +20,8 @@ import style from "./index.module.scss";
 
 interface Props {
   studyListByStatus: {
-    ready: app_types.ProcessedPageWithStudy[];
-    open: app_types.ProcessedPageWithStudy[];
-    inprogress: app_types.ProcessedPageWithStudy[];
-    close: app_types.ProcessedPageWithStudy[];
+    able: app_types.ProcessedPageWithStudy[];
+    inable: app_types.ProcessedPageWithStudy[];
   };
 }
 
@@ -33,35 +31,17 @@ const { TabPane } = Tabs;
 
 const Index = (props: Props) => {
   const router = useRouter();
-  const { status } = router.query;
   const { studyListByStatus } = props;
 
-  const [filter, setFilter] = useState((status as string) || "open");
+  const [filter, setFilter] = useState("able");
   const [itemList, setItemList] = useState([]);
-
-  useEffect(() => {
-    if (status) {
-      setFilter(status as string);
-    }
-  }, [status]);
 
   useEffect(() => {
     setItemList(() => []);
     if (filter === "all") {
-      setItemList([
-        ...studyListByStatus.ready,
-        ...studyListByStatus.open,
-        ...studyListByStatus.inprogress,
-        ...studyListByStatus.close,
-      ]);
-    } else if (filter === "ready") {
-      setItemList(studyListByStatus.ready);
-    } else if (filter === "open") {
-      setItemList(studyListByStatus.open);
-    } else if (filter === "inprogress") {
-      setItemList(studyListByStatus.inprogress);
-    } else if (filter === "close") {
-      setItemList(studyListByStatus.close);
+      setItemList([...studyListByStatus.able, ...studyListByStatus.inable]);
+    } else {
+      setItemList(studyListByStatus[filter]);
     }
   }, [filter, studyListByStatus]);
 
@@ -89,14 +69,7 @@ const Index = (props: Props) => {
             }}
           />
         </div>
-        <main className={style.main}>
-          <ItemGrid
-            gridItemType="SKELETON"
-            title=""
-            detailPath={""}
-            noHeader={true}
-          />
-        </main>
+        <main className={style.main}></main>
       </PaddingContainer>
     );
   }
@@ -104,29 +77,20 @@ const Index = (props: Props) => {
   return (
     <PaddingContainer>
       <MetaHead title="스터디 전체보기" />
-
       <div className={style.container}>
         <DetailPageHeader
           noBorder
           title={"스터디 전체 보기"}
           footerChildren={
             <Tabs activeKey={filter} onChange={onChangeFilter}>
-              <TabPane tab="참가 가능한" key="open"></TabPane>
-              <TabPane tab="진행중인" key="inprogress"></TabPane>
-              <TabPane tab="종료된" key="close"></TabPane>
-              <TabPane tab="준비중인" key="ready"></TabPane>
+              <TabPane tab="참여 가능한" key="able"></TabPane>
+              <TabPane tab="모집 마감된" key="inable"></TabPane>
               <TabPane tab="전체" key="all"></TabPane>
             </Tabs>
           }
         />
         <main className={style.main}>
-          <ItemGrid
-            gridItemType="STUDY"
-            title=""
-            detailPath={""}
-            noHeader={true}
-            gridItemList={itemList}
-          />
+          <StudyItemList tag_kind="APPLY_ABLE" studyList={itemList} />
         </main>
         <div className={style.footer}>
           <StripeBanner
@@ -148,14 +112,16 @@ export const getStaticProps = async () => {
   const studyPageList = await API_GetStudyPageList();
 
   const studyListByStatus = {
-    ready: [],
-    open: [],
-    inprogress: [],
-    close: [],
+    able: [],
+    inable: [],
   };
 
   studyPageList.forEach((study) => {
-    studyListByStatus[study.study_status.toLowerCase()].push(study);
+    if (["INPROGRESS", "CLOSE"].includes(study.study_status)) {
+      studyListByStatus["inable"].push(study);
+    } else {
+      studyListByStatus["able"].push(study);
+    }
   });
 
   return {

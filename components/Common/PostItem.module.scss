@@ -1,87 +1,44 @@
 .container:hover {
   transform: translateY(-8px);
+  box-shadow: rgb(68 112 255 / 32%) 0px 4px 32px 0px;
 }
 .container {
   transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
+  max-width: 340px;
+  border-radius: 5px;
+
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 32px;
+  cursor: pointer;
 
   .head {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 5px;
-    margin-bottom: 10px;
-
-    .lecture_img:hover {
-      transform: scale(1.08);
-    }
-    .lecture_img {
-      filter: blur(4px);
-
-      width: 100%;
-      border-radius: 5px;
-      transition: transform 0.5s;
-    }
-
-    .mask {
-      position: absolute;
-      top: 0px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      background-color: rgba(0, 0, 0, 0.65);
-
-      .post_info_wrapper {
-        position: absolute;
-        top: 10%;
-        left: 5%;
-        color: white;
-        .post_study_name {
-          font-size: var(--font_5);
-          margin-top: 10px;
-        }
-        .study_name {
-          font-size: var(--font_4);
-          font-family: bold;
-        }
-      }
-    }
-
-    .tutor_wrapper {
-      position: absolute;
-      bottom: 10%;
-      right: 5%;
-    }
+    margin-bottom: 20px;
   }
 
   .body {
-    display: flex;
-    flex-direction: column;
-
     .post_title {
-      font-size: var(--font_5);
-      font-family: medium;
-      cursor: pointer;
+      font-size: var(--font_4);
+      font-family: bold;
+      margin-bottom: 10px;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
     }
-    .post_last_edited_time {
-      font-size: var(--font_6);
+
+    .last_edited_time {
+      font-size: var(--font_7);
       color: var(--gray500);
       margin-bottom: 10px;
     }
-    .mentor_wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
 
-      .image_wrapper {
-        width: 25px;
-        height: 25px;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 50%;
-        }
-      }
+    .preview {
+      font-size: var(--font_6);
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
     }
   }
 }

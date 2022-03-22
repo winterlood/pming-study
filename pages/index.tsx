@@ -10,6 +10,8 @@ import { Button } from "antd";
 import banner from "public/image/banner.png";
 import MetaHead from "components/Common/MetaHead";
 import Link from "next/link";
+import StudyItemList from "components/Common/StudyItemList";
+import PostItemList from "components/Common/PostItemList";
 
 interface Props {
   pages: app_types.PageList;
@@ -38,34 +40,25 @@ export default function Home(props: Props) {
               이제 혼자가 아닌
               <br /> 같이 스터디하세요
             </div>
-
             <div className={style.btn_wrapper}>
               <Link href={"/study?status=open"}>
                 <Button type="primary">시작하기</Button>
               </Link>
             </div>
           </div>
-
           <div className={style.image_wrapper}>
             <img src={banner.src}></img>
           </div>
         </section>
         <section className={style.section_grid}>
-          <ItemGrid
+          <StudyItemList
+            header
             title="신청 가능한 스터디"
-            detailPath="/study?status=open"
-            gridItemType="STUDY"
-            gridItemList={props.studyListByStatus.open}
+            detailPath="/study"
+            tag_kind="END_DATE"
+            studyList={props.studyListByStatus.open}
           />
         </section>
-        {/* <section className={style.section_grid}>
-          <ItemGrid
-            title="준비 중인 스터디"
-            detailPath="/study?status=ready"
-            gridItemType="STUDY"
-            gridItemList={props.studyListByStatus.ready}
-          />
-        </section> */}
         <section>
           <StripeBanner
             title="멘토는 무료, 멘티는 최저가 수강료 지원"
@@ -76,14 +69,13 @@ export default function Home(props: Props) {
           />
         </section>
       </PaddingContainer>
-
       <PaddingContainer>
         <section className={style.section_grid}>
-          <ItemGrid
+          <PostItemList
+            header
             title="스터디 포스트"
             detailPath="/post"
-            gridItemType="POST"
-            gridItemList={props.studyPostList}
+            postList={props.studyPostList}
           />
         </section>
       </PaddingContainer>

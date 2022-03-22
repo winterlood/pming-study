@@ -24,7 +24,8 @@ interface Props {
 const StudyStatusTag = (props: Props) => {
   return (
     <Tag type={props.type || getStudyStatusTagType(props.studyStatus)}>
-      {props.children || getTraslatedStudyStatus(props.studyStatus) + " 스터디"}
+      {getTraslatedStudyStatus(props.studyStatus) + " 스터디"}
+      {props.children}
     </Tag>
   );
 };
