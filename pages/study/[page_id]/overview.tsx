@@ -1,9 +1,11 @@
 import { app_types } from "@types";
+import BlockRenderer from "components/Common/BlockRenderer";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
 import MetaHead from "components/Common/MetaHead";
 import PaddingContainer from "components/Common/PaddingContainer";
 import StudyStatusTag from "components/Common/StudyStatusTag";
+import { getPageBlocks } from "lib/server/get-page-blocks";
 import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
 import { API_GetProcessedPostPageListByStudy } from "lib/server/post-page";
 import { API_GetStudyPage } from "lib/server/study-page";
@@ -23,6 +25,7 @@ import MentorSummaryBox from "components/Common/MentorSummaryBox";
 
 interface Props {
   page: app_types.ProcessedPageWithStudy;
+  lastFetch: string;
   postList: app_types.ProcessedPageWithStudyPostWithRelatedStudy[];
   ogImageUrl: string;
 }
@@ -30,7 +33,7 @@ interface Props {
 // COMPONENT
 
 const Overview = (props: Props) => {
-  const { page, postList } = props;
+  const { page, lastFetch, postList } = props;
 
   const router = useRouter();
 
@@ -50,7 +53,6 @@ const Overview = (props: Props) => {
           <DetailPageHeader
             headChildren={<StudyStatusTag studyStatus={page.study_status} />}
             title={page.study_name}
-            // footerChildren={page.study_introduce}
             footerChildren={
               <div className={style.footer_wrapper}>
                 <section>

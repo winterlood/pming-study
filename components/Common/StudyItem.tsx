@@ -7,12 +7,6 @@ import Tag from "./Tag";
 
 // ANTD
 
-// COMPS
-
-// STATICS
-
-// TYPES
-
 interface Props extends app_types.ProcessedPageWithStudy {
   tag_kind: "END_DATE" | "STUDY_STATUS" | "APPLY_ABLE";
 }

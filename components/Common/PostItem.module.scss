@@ -31,6 +31,26 @@
       font-size: var(--font_7);
       color: var(--gray500);
       margin-bottom: 10px;
+      .post_info_wrapper {
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        color: white;
+        .post_study_name {
+          font-size: var(--font_5);
+          margin-top: 10px;
+        }
+        .study_name {
+          font-size: var(--font_4);
+          font-family: bold;
+        }
+      }
+    }
+
+    .tutor_wrapper {
+      position: absolute;
+      bottom: 10%;
+      right: 5%;
     }
 
     .preview {
@@ -39,6 +59,27 @@
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
       overflow: hidden;
+    }
+    .post_last_edited_time {
+      font-size: var(--font_6);
+      color: var(--gray500);
+      margin-bottom: 10px;
+    }
+    .mentor_wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .image_wrapper {
+        width: 25px;
+        height: 25px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
     }
   }
 }
