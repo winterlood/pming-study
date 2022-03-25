@@ -60,15 +60,21 @@ const getProcessedPostPageSummaryList = async (
   rawPostPageList: notion_types.PageWithPost[]
 ): Promise<any | app_types.ProcessedPageWithStudyPost[]> => {
   return rawPostPageList.map((rawPostPage) => {
-    const { post_title: rawPostTitle } = rawPostPage.properties;
+    const { post_title: rawPostTitle, preview: rawPreview } =
+      rawPostPage.properties;
 
     const post_title = rawPostTitle[rawPostTitle.type]
+      .map((it) => it.plain_text)
+      .join(" ");
+
+    const preview = rawPreview[rawPreview.type]
       .map((it) => it.plain_text)
       .join(" ");
 
     return {
       ...rawPostPage,
       post_title,
+      preview,
     };
   });
 };
@@ -76,8 +82,11 @@ const getProcessedPostPageSummaryList = async (
 const getProcssedPostPageDetail = async (
   rawPostPage: notion_types.PageWithPost
 ): Promise<app_types.ProcessedPageWithStudyPostWithRelatedStudy> => {
-  const { post_title: rawPostTitle, related_study: rawRelatedStudy } =
-    rawPostPage.properties;
+  const {
+    post_title: rawPostTitle,
+    related_study: rawRelatedStudy,
+    preview: rawPreview,
+  } = rawPostPage.properties;
 
   const related_study_page_id =
     rawRelatedStudy.relation.length !== 0
@@ -94,10 +103,15 @@ const getProcssedPostPageDetail = async (
     .map((it) => it.plain_text)
     .join(" ");
 
+  const preview = rawPreview[rawPreview.type]
+    .map((it) => it.plain_text)
+    .join(" ");
+
   return {
     ...rawPostPage,
     post_title,
     related_study,
+    preview,
   };
 };
 

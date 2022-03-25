@@ -5,21 +5,19 @@ import { API_GetProcessedPostPageList } from "lib/server/post-page";
 import { API_GetStartedStudyPageList } from "lib/server/study-page";
 import { app_types } from "@types";
 import { Tabs } from "antd";
-import PostGrid from "components/Post/index/PostGrid";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import MetaHead from "components/Common/MetaHead";
+import StudyItemList from "components/Common/StudyItemList";
+import PostItemList from "components/Common/PostItemList";
 // TYPES
 
-interface StudyPostData extends app_types.ProcessedPageWithStudy {
+interface Props {
+  studyList: app_types.ProcessedPageWithStudy[];
   postList: app_types.ProcessedPageWithStudyPostWithRelatedStudy[];
 }
 
-interface Props {
-  studyPostData: StudyPostData[];
-}
-
 const Index = (props: Props) => {
-  const [pageFilter, setPageFilter] = useState<"study" | "total">("study");
+  const [pageFilter, setPageFilter] = useState<"study" | "total">("total");
   const onChangeFilter = useCallback((v) => {
     setPageFilter(v);
   }, []);
@@ -32,17 +30,24 @@ const Index = (props: Props) => {
       <div className={style.container}>
         <DetailPageHeader
           noBorder
-          title={"스터디 진행 결과 전체보기"}
+          title={"스터디 포스트"}
           footerChildren={
             <Tabs activeKey={pageFilter} onChange={onChangeFilter}>
-              <Tabs.TabPane tab="스터디 묶어보기" key="study"></Tabs.TabPane>
               <Tabs.TabPane tab="전체보기" key="total"></Tabs.TabPane>
+              <Tabs.TabPane tab="스터디별로 보기" key="study"></Tabs.TabPane>
             </Tabs>
           }
         />
         <div className={style.body}>
           <article className={style.article_wrapper}>
-            <PostGrid pageFilter={pageFilter} {...props} />
+            {pageFilter === "study" ? (
+              <StudyItemList
+                tag_kind="STUDY_STATUS"
+                studyList={props.studyList}
+              />
+            ) : (
+              <PostItemList postList={props.postList} />
+            )}
           </article>
         </div>
         <div className={style.footer}></div>
@@ -54,42 +59,31 @@ const Index = (props: Props) => {
 export default Index;
 
 export const getStaticProps = async () => {
-  const [startedStudyList, studyPostList] = await Promise.all([
+  const [studyList, rawPostList] = await Promise.all([
     API_GetStartedStudyPageList(),
     API_GetProcessedPostPageList(),
   ]);
 
-  const studyPostDataObject = {};
-
-  studyPostList
+  const postList = rawPostList
     .filter(
       (studyPost) => studyPost.properties.related_study.relation.length > 0
     )
-    .forEach((studyPost) => {
+    .map((studyPost) => {
       const targetStudyId = studyPost.properties.related_study.relation[0].id;
-      const relatedStudy = startedStudyList.find(
-        (it) => it.id === targetStudyId
-      );
+      const relatedStudy = studyList.find((it) => it.id === targetStudyId);
 
       const processedStudyPost = {
         ...studyPost,
         related_study: relatedStudy,
       };
 
-      if (studyPostDataObject[relatedStudy.id]) {
-        studyPostDataObject[relatedStudy.id].postList.push(processedStudyPost);
-      } else {
-        studyPostDataObject[relatedStudy.id] = {
-          ...relatedStudy,
-          postList: [processedStudyPost],
-        };
-      }
+      return processedStudyPost;
     });
 
   return {
     props: {
-      studyPostData: Object.values(studyPostDataObject),
-      // studyPostList: studyPostWithStudy,
+      studyList,
+      postList,
     },
     revalidate: 1,
   };

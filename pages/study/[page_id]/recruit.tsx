@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import style from "./recruit.module.scss";
-import { api_types, app_types, notion_types } from "@types";
+import { api_types, app_types } from "@types";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { message, Button } from "antd";
