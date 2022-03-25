@@ -24,6 +24,7 @@ import { getPageBlocks } from "lib/server/get-page-blocks";
 import moment from "moment-timezone";
 import { pingSearchConsole } from "lib/server/ping-search-console";
 import BlockRenderer from "components/Common/BlockRenderer";
+import Tag from "components/Common/Tag";
 
 // LAZY
 const ApplyStudyDrawer = dynamic(
@@ -106,9 +107,9 @@ const Study = (props: Props) => {
             <div className={style.tag_wrapper}>
               <StudyStatusTag studyStatus={page.study_status}></StudyStatusTag>
               {page.study_status === "OPEN" && (
-                <StudyStatusTag studyStatus={page.study_status}>
+                <Tag type="default">
                   {getLocaleEndDate(page.study_apply_end_date)}
-                </StudyStatusTag>
+                </Tag>
               )}
             </div>
           }
