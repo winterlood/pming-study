@@ -11,8 +11,6 @@ import { getStudyOpenGraphImageURL } from "lib/server/opengraph";
 import StudyInfoItem from "components/Common/StudyInfoItem";
 import MetaHead from "components/Common/MetaHead";
 import DetailPageSkeleton from "components/Common/DetailPageSkeleton";
-import Tag from "components/Common/Tag";
-import StripeBanner from "components/Home/StripeBanner";
 import PaddingContainer from "components/Common/PaddingContainer";
 import { getPageBlocks } from "lib/server/get-page-blocks";
 import { ExtendedRecordMap } from "notion-types";
@@ -20,6 +18,7 @@ import BlockRenderer from "components/Common/BlockRenderer";
 import moment from "moment-timezone";
 import { pingSearchConsole } from "lib/server/ping-search-console";
 import MentorSummaryBox from "components/Common/MentorSummaryBox";
+import CTABanner from "components/Common/CTABanner";
 // LAZY
 const Comments = dynamic(() => import("components/Common/Comment"), {
   ssr: false,
@@ -85,13 +84,7 @@ const Post = (props: Props) => {
           </div>
 
           <div className={style.banner_wrapper}>
-            <StripeBanner
-              title="이런 멋진 스터디, 직접 운영하고 싶으신가요?"
-              descript="프밍 클래스와 함께 스터디 멘토가 되어보세요!"
-              image_url=""
-              isExternalPath={true}
-              path="https://devstu-udemy.netlify.app/"
-            />
+            <CTABanner />
           </div>
 
           <div className={style.comment_wrapper}>

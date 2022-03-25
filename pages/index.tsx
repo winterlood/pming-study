@@ -2,7 +2,6 @@ import { app_types } from "@types";
 import PaddingContainer from "components/Common/PaddingContainer";
 import style from "./index.module.scss";
 import { API_GetStudyPageList } from "lib/server/study-page";
-import StripeBanner from "components/Home/StripeBanner";
 import { API_GetProcessedPostPageList } from "lib/server/post-page";
 import { Button } from "antd";
 
@@ -11,6 +10,7 @@ import MetaHead from "components/Common/MetaHead";
 import Link from "next/link";
 import StudyItemList from "components/Common/StudyItemList";
 import PostItemList from "components/Common/PostItemList";
+import CTABanner from "components/Common/CTABanner";
 
 interface Props {
   pages: app_types.PageList;
@@ -31,16 +31,16 @@ export default function Home(props: Props) {
         <section className={style.section_hero}>
           <div className={style.info_wrapper}>
             <div className={style.descript}>
-              멘토에게는 강의 무료 수강권을
+              Udemy 강의만 구매하면 스터디 참여가 무료?!
               <br />
-              멘티에게는 만원대의 파격적 수강료 지원
+              스터디원에게는 강의 최저가 할인 쿠폰까지!!
             </div>
             <div className={style.title}>
-              이제 혼자가 아닌
-              <br /> 같이 스터디하세요
+              함께 해서 더 즐거운
+              <br /> 프밍 스터디
             </div>
             <div className={style.btn_wrapper}>
-              <Link href={"/study?status=open"}>
+              <Link href={"/study"}>
                 <Button type="primary">시작하기</Button>
               </Link>
             </div>
@@ -59,13 +59,7 @@ export default function Home(props: Props) {
           />
         </section>
         <section>
-          <StripeBanner
-            title="멘토는 무료, 멘티는 최저가 수강료 지원"
-            descript="선정된 멘토와 멘티에게는 Udemy Global Best 강의료를 지원합니다"
-            image_url="https://sb-drops.s3.amazonaws.com/drop/rmopt-602c8a6723dc8-914689400-1613531751.png"
-            isExternalPath
-            path="https://applymentor.pming.kr/"
-          />
+          <CTABanner />
         </section>
       </PaddingContainer>
       <PaddingContainer>

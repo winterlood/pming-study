@@ -1,5 +1,6 @@
 import { app_types } from "@types";
 import { Skeleton, Tabs } from "antd";
+import CTABanner from "components/Common/CTABanner";
 import DetailPageHeader from "components/Common/DetailPageHeader";
 import MetaHead from "components/Common/MetaHead";
 import PaddingContainer from "components/Common/PaddingContainer";
@@ -93,13 +94,7 @@ const Index = (props: Props) => {
           <StudyItemList tag_kind="APPLY_ABLE" studyList={itemList} />
         </main>
         <div className={style.footer}>
-          <StripeBanner
-            title="찾으시는 스터디가 없다면 직접 멘토가 되어보세요"
-            descript="선정된 멘토는 Udemy에서 운영하는 Global Best 강의 무료 수강권 혜택이 있습니다"
-            image_url=""
-            path="https://devstu-udemy.netlify.app"
-            isExternalPath
-          />
+          <CTABanner />
         </div>
       </div>
     </PaddingContainer>
