@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { api_types } from "@types";
+import { applyWebhook } from "lib/server/apply-webhook";
 
 const buildRichTextObject = (text) => {
   return {
@@ -20,7 +21,7 @@ const notionClient = new Client({
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const date = new Date();
-    const applyName = `${date.toLocaleDateString()}  ${date.toLocaleTimeString()}`;
+    const apply_date = `${date.toLocaleDateString()}  ${date.toLocaleTimeString()}`;
     const reqObj: api_types.StudyApplyRequestBody = req.body;
 
     const {
@@ -32,17 +33,19 @@ export default async function handler(req, res) {
       applicant_github_url,
     } = reqObj;
 
+    const study_page_url = `${process.env.BASE_URL}/study/${target_study_id}/recruit`;
+
     notionClient.pages
       .create({
         parent: {
-          database_id: process.env.NOTION_STUDY_APPLY_DATABASE,
+          database_id: process.env.NOTION_STUDY_APPLY_DATABASE + "222",
         },
         icon: {
           type: "emoji",
           emoji: "🚨",
         },
         properties: {
-          apply_date: { title: [{ text: { content: applyName } }] },
+          apply_date: { title: [{ text: { content: apply_date } }] },
           target_study: {
             relation: [{ id: target_study_id }],
           },
@@ -55,9 +58,21 @@ export default async function handler(req, res) {
         },
       })
       .then((_) => {
+        applyWebhook({
+          ...reqObj,
+          apply_date,
+          study_page_url,
+          isSuccess: true,
+        });
         res.status(200).json({ message: "success" });
       })
       .catch((err) => {
+        applyWebhook({
+          ...reqObj,
+          apply_date,
+          study_page_url,
+          isSuccess: false,
+        });
         res.status(400).json({ message: "bad request" });
       });
   } else {
