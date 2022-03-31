@@ -9,8 +9,8 @@ interface WebhookProperty extends api_types.StudyApplyRequestBody {
   study_page_url: string;
 }
 
-export const applyWebhook = (param: WebhookProperty) => {
-  axios
+export const applyWebhook = async (param: WebhookProperty) => {
+  const res = await axios
     .post(WEBHOOK_URL, {
       attachments: [
         {
@@ -95,6 +95,13 @@ export const applyWebhook = (param: WebhookProperty) => {
         },
       ],
     })
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err.message));
+    .then((res) => {
+      console.log(res.data);
+      return res;
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return err.message;
+    });
+  return res;
 };
