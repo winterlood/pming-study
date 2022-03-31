@@ -2,7 +2,8 @@ import style from "./CTABanner.module.scss";
 import { Button } from "antd";
 import Link from "next/link";
 
-const CTA_URL = "https://opondv6pe5s.typeform.com/to/LDA9UDTL";
+const CTA_URL =
+  "https://opondv6pe5s.typeform.com/to/LDA9UDTL?utm_medium=pmingads&utm_source=pming-page&utm_campaign=banner&utm_content=survey&utm_term=202203";
 const CTABanner = () => {
   return (
     <div className={style.container_outter}>
@@ -16,8 +17,10 @@ const CTABanner = () => {
             신청 해 주세요!
           </div>
           <div className={style.btn_wrapper}>
-            <Link href={CTA_URL}>
-              <Button shape="round">스터디 개설 신청하기</Button>
+            <Link href={CTA_URL} passHref>
+              <a target={"_blank"}>
+                <Button shape="round">스터디 개설 신청하기</Button>
+              </a>
             </Link>
           </div>
         </div>

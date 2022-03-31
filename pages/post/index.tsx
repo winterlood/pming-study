@@ -85,6 +85,6 @@ export const getStaticProps = async () => {
       studyList,
       postList,
     },
-    revalidate: 1,
+    revalidate: 1440,
   };
 };

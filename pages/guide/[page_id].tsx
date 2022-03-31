@@ -47,6 +47,6 @@ export const getStaticProps = async (ctx) => {
       recordMap,
       lastFetch,
     },
-    revalidate: 1,
+    revalidate: 1440,
   };
 };
