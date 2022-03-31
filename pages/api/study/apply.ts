@@ -57,8 +57,8 @@ export default async function handler(req, res) {
           applicant_github_url: { url: applicant_github_url },
         },
       })
-      .then((_) => {
-        applyWebhook({
+      .then(async (_) => {
+        await applyWebhook({
           ...reqObj,
           apply_date,
           study_page_url,
@@ -66,8 +66,8 @@ export default async function handler(req, res) {
         });
         res.status(200).json({ message: "success" });
       })
-      .catch((err) => {
-        applyWebhook({
+      .catch(async (err) => {
+        await applyWebhook({
           ...reqObj,
           apply_date,
           study_page_url,
