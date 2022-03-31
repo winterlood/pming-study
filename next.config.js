@@ -54,6 +54,11 @@ const nextConfig = {
     NOTION_STUDY_APPLY_DATABASE: isLocal
       ? process.env.TEST_NOTION_STUDY_APPLY_DATABASE
       : process.env.PRODUCTION_NOTION_STUDY_APPLY_DATABASE,
+
+    /*
+     * SLACK WEB HOOK
+     */
+    SLACK_WEBHOOK_URL: process.env.SLACK_WEBHOOK_URL,
   },
 };
 
