@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     notionClient.pages
       .create({
         parent: {
-          database_id: process.env.NOTION_STUDY_APPLY_DATABASE,
+          database_id: process.env.NOTION_STUDY_APPLY_DATABASE + "222",
         },
         icon: {
           type: "emoji",

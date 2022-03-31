@@ -10,6 +10,7 @@ interface WebhookProperty extends api_types.StudyApplyRequestBody {
 }
 
 export const applyWebhook = (param: WebhookProperty) => {
+
   axios
     .post(WEBHOOK_URL, {
       attachments: [
