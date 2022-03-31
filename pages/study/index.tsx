@@ -123,6 +123,6 @@ export const getStaticProps = async () => {
     props: {
       studyListByStatus: studyListByStatus,
     },
-    revalidate: 1,
+    revalidate: 1440,
   };
 };

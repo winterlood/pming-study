@@ -337,7 +337,7 @@ export const getStaticProps = async (ctx) => {
       lastFetch,
       ogImageUrl,
     },
-    revalidate: 1,
+    revalidate: 1440,
   };
 };
 
