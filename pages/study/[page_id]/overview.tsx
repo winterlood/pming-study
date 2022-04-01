@@ -111,6 +111,6 @@ export const getStaticProps = async (ctx) => {
       postList: postList.map((it) => ({ ...it, related_study: page })),
       ogImageUrl,
     },
-    revalidate: 1440,
+    revalidate: 30,
   };
 };

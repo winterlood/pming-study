@@ -5,7 +5,6 @@ import DetailPageHeader from "components/Common/DetailPageHeader";
 import MetaHead from "components/Common/MetaHead";
 import PaddingContainer from "components/Common/PaddingContainer";
 import StudyItemList from "components/Common/StudyItemList";
-import StripeBanner from "components/Home/StripeBanner";
 import { API_GetStudyPageList } from "lib/server/study-page";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
@@ -123,6 +122,6 @@ export const getStaticProps = async () => {
     props: {
       studyListByStatus: studyListByStatus,
     },
-    revalidate: 1440,
+    revalidate: 1,
   };
 };
