@@ -8,11 +8,26 @@
   .head_section {
     .title_wrapper {
       h1 {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
     }
     padding-bottom: 30px;
     border-bottom: 1px solid var(--gray100);
+  }
+
+  .intro_section {
+    .accent_box {
+      background-color: var(--primary-medium);
+      padding: 20px;
+      border-radius: 5px;
+      font-size: var(--font_5);
+      line-height: 2;
+      word-break: keep-all;
+      .label {
+        font-family: bold;
+        margin-bottom: 10px;
+      }
+    }
   }
   .info_section {
     .info_item_wrapper {

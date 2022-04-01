@@ -116,11 +116,17 @@ const Study = (props: Props) => {
           title={page.study_name}
           footerChildren={
             <div className={style.introduce_wrapper}>
-              {page.study_introduce}
+              마지막 업데이트 :{" "}
+              {new Date(page.last_edited_time).toLocaleString()}
             </div>
           }
         />
-
+        <Section className={style.intro_section}>
+          <div className={style.accent_box}>
+            <div className={style.label}>스터디 소개</div>
+            <div className={style.value}>{page.study_introduce}</div>
+          </div>
+        </Section>
         <Section className={style.info_section} title={"🎯 스터디 요약"}>
           <div className={style.info_item_wrapper}>
             <div className={style.info_item}>
