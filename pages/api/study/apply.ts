@@ -1,6 +1,7 @@
 import { Client } from "@notionhq/client";
 import { api_types } from "@types";
 import { applyWebhook } from "lib/server/apply-webhook";
+import moment from "moment-timezone";
 
 const buildRichTextObject = (text) => {
   return {
@@ -21,7 +22,10 @@ const notionClient = new Client({
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const date = new Date();
-    const apply_date = `${date.toLocaleDateString()}  ${date.toLocaleTimeString()}`;
+
+    const curDate = moment.tz("Asia/Seoul");
+
+    const apply_date = `${curDate.toLocaleString()}`;
     const reqObj: api_types.StudyApplyRequestBody = req.body;
 
     const {
