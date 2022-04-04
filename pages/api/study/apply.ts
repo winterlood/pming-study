@@ -53,12 +53,12 @@ export default async function handler(req, res) {
           target_study: {
             relation: [{ id: target_study_id }],
           },
-          target_study_id: buildRichTextObject(target_study_id),
-          applicant_name: buildRichTextObject(applicant_name),
-          applicant_email: buildRichTextObject(applicant_email),
-          applicant_kakao_id: buildRichTextObject(applicant_kakao_id),
-          applicant_reason: buildRichTextObject(applicant_reason),
-          applicant_github_url: { url: applicant_github_url },
+          target_study_id: buildRichTextObject(target_study_id || "없음"),
+          applicant_name: buildRichTextObject(applicant_name || "없음"),
+          applicant_email: buildRichTextObject(applicant_email || "없음"),
+          applicant_kakao_id: buildRichTextObject(applicant_kakao_id || "없음"),
+          applicant_reason: buildRichTextObject(applicant_reason || "없음"),
+          applicant_github_url: { url: applicant_github_url || "없음" },
         },
       })
       .then(async (_) => {

@@ -72,6 +72,11 @@ export const applyWebhook = async (param: WebhookProperty) => {
               short: true,
             },
             {
+              title: "지원자 Email 주소(applicant_email)",
+              value: param.applicant_email,
+              short: true,
+            },
+            {
               title: "지원자 GitHub 주소(applicant_github_url)",
               value: param.applicant_github_url,
               short: true,
