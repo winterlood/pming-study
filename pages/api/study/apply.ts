@@ -62,21 +62,25 @@ export default async function handler(req, res) {
         },
       })
       .then(async (_) => {
-        await applyWebhook({
-          ...reqObj,
-          apply_date,
-          study_page_url,
-          isSuccess: true,
-        });
+        if (process.env.NODE_ENV !== "development") {
+          await applyWebhook({
+            ...reqObj,
+            apply_date,
+            study_page_url,
+            isSuccess: true,
+          });
+        }
         res.status(200).json({ message: "success" });
       })
       .catch(async (err) => {
-        await applyWebhook({
-          ...reqObj,
-          apply_date,
-          study_page_url,
-          isSuccess: false,
-        });
+        if (process.env.NODE_ENV !== "development") {
+          await applyWebhook({
+            ...reqObj,
+            apply_date,
+            study_page_url,
+            isSuccess: false,
+          });
+        }
         res.status(400).json({ message: "bad request" });
       });
   } else {

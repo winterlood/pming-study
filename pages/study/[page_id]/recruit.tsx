@@ -25,6 +25,7 @@ import moment from "moment-timezone";
 import { pingSearchConsole } from "lib/server/ping-search-console";
 import BlockRenderer from "components/Common/BlockRenderer";
 import Tag from "components/Common/Tag";
+import { applyEmail } from "lib/client/apply-email";
 
 // LAZY
 const ApplyStudyDrawer = dynamic(
@@ -68,6 +69,13 @@ const Study = (props: Props) => {
             marginTop: "20vh",
           },
         });
+
+        applyEmail({
+          study_name: page.study_name,
+          applicant_name: requestBody.applicant_name,
+          applicant_email: requestBody.applicant_email,
+        });
+
         toggleModal();
       },
       onFail: () => {
