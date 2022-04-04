@@ -26,12 +26,12 @@ const MenuList: MenuList[] = [
   { link: "/", display: "홈" },
   { link: "/study", display: "스터디" },
   { link: "/post", display: "포스트" },
-  // {
-  //   link: "https://applymentor.pming.kr",
-  //   display: "스터디 멘토 지원",
-  //   isExternalPath: true,
-  // },
-  { link: "/guide", display: "스터디 멘토 가이드" },
+  {
+    link: "https://winterlood.notion.site/3b660121653f4daaa403ef5c2b72a4ac",
+    display: "멘토 가이드",
+    isExternalPath: true,
+  },
+  // { link: "/guide", display: "스터디 멘토 가이드" },
 ];
 const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
