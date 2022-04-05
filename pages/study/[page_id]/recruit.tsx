@@ -26,6 +26,7 @@ import { pingSearchConsole } from "lib/server/ping-search-console";
 import BlockRenderer from "components/Common/BlockRenderer";
 import Tag from "components/Common/Tag";
 import { applyEmail } from "lib/client/apply-email";
+import { applySyncSpreadSheet } from "lib/client/apply-sync-spreadsheet";
 
 // LAZY
 const ApplyStudyDrawer = dynamic(
@@ -75,6 +76,13 @@ const Study = (props: Props) => {
           applicant_name: requestBody.applicant_name,
           applicant_email: requestBody.applicant_email,
         });
+
+        if (page.spread_sheet_url) {
+          applySyncSpreadSheet({
+            ...requestBody,
+            spread_sheet_url: page.spread_sheet_url,
+          });
+        }
 
         toggleModal();
       },

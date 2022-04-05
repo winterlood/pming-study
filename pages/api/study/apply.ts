@@ -21,13 +21,7 @@ const notionClient = new Client({
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const date = new Date();
-
-    const curDate = moment.tz("Asia/Seoul");
-
-    const apply_date = `${curDate.toLocaleString()}`;
     const reqObj: api_types.StudyApplyRequestBody = req.body;
-
     const {
       target_study_id,
       applicant_name,
@@ -36,6 +30,9 @@ export default async function handler(req, res) {
       applicant_reason,
       applicant_github_url,
     } = reqObj;
+
+    const curDate = moment.tz("Asia/Seoul");
+    const apply_date = `${curDate.toLocaleString()}`;
 
     const study_page_url = `${process.env.BASE_URL}/study/${target_study_id}/recruit`;
 

@@ -25,7 +25,9 @@ const getProcssedStudyPage = (
     mentor_kakao_id,
     apply_count,
     study_post_count,
+    spread_sheet_url,
   } = rawStudyPage.properties;
+
   return {
     ...rawStudyPage,
     study_id: rawStudyPage.id,
@@ -55,6 +57,7 @@ const getProcssedStudyPage = (
     mentor_kakao_id: convertStringProperty(mentor_kakao_id),
     apply_count: convertStringProperty(apply_count),
     study_post_count: convertStringProperty(study_post_count),
+    spread_sheet_url: spread_sheet_url.url,
   };
 };
 

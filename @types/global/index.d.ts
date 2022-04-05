@@ -148,6 +148,7 @@ declare module "@types" {
       udemy_lecture_url: PageProperty["url"];
       apply_count: PageProperty["text"];
       study_post_count: PageProperty["text"];
+      spread_sheet_url: PageProperty["url"];
     }
     interface PageWithStudy extends Page, PageWithMentor {
       properties: PageWithStudyProperty;
@@ -259,6 +260,7 @@ declare module "@types" {
       udemy_lecture_url: string;
       apply_count: string;
       study_post_count: string;
+      spread_sheet_url: string;
     }
 
     interface PageWithPost extends ProcessedPage {
