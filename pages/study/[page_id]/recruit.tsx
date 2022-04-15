@@ -245,12 +245,13 @@ const Study = (props: Props) => {
                   최소한의 보증금 제를 운영하고 있습니다.
                 </div>
                 <div className={style.notice_paragraph}>
-                  모든 스터디 멘티는 스터디에 참가하기 위해 15,000원의 스터디
-                  보증금이 필요합니다
+                  원활한 스터디 참여를 위해 필요하다고 느끼시는 멘토님은 보증금
+                  및 지각비 제도를 도입하셔도 됩니다.
                 </div>
                 <div className={style.notice_paragraph}>
-                  보증금은 프밍 측에서 직접 보관하고 있다가, 스터디가 종료되면
-                  돌려드립니다
+                  단, 보증금 및 지각비를 걷고 반환하는 것에 대한 모든 책임은
+                  멘토님에게 있으며, 부적절한 이유로 반환하지 않을 시 멘토단
+                  활동비 에서 해당 금액이 차감됩니다.
                 </div>
                 <div
                   className={[style.notice_paragraph, style.notice_warn].join(
@@ -266,10 +267,6 @@ const Study = (props: Props) => {
             <div className={style.notice_item}>
               <div className={style.notice_head}>4. 스터디 진행</div>
               <div className={style.notice_value}>
-                <div className={style.notice_paragraph}>
-                  보증금은 프밍 측에서 직접 보관하고 있다가, 스터디가 종료되면
-                  돌려드립니다
-                </div>
                 <div className={style.notice_paragraph}>
                   1~3 단계를 마친 멘티분들과 멘토님이 함께 스터디를 본격적으로
                   진행합니다.
