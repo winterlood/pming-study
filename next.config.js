@@ -5,8 +5,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-const isLocal = process.env.NODE_ENV === "development";
-// const isLocal = false;
+// const isLocal = process.env.NODE_ENV === "development";
+const isLocal = false;
 
 const nextConfig = {
   env: {

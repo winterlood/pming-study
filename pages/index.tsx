@@ -58,6 +58,7 @@ export default function Home(props: Props) {
             studyList={props.studyListByStatus.open}
           />
         </section>
+
         <section>
           <CTABanner />
         </section>
@@ -69,6 +70,15 @@ export default function Home(props: Props) {
             title="스터디 포스트"
             detailPath="/post"
             postList={props.studyPostList}
+          />
+        </section>
+        <section className={style.section_grid}>
+          <StudyItemList
+            header
+            title="진행중인 스터디"
+            detailPath="/study"
+            tag_kind="APPLY_ABLE"
+            studyList={props.studyListByStatus.inprogress}
           />
         </section>
       </PaddingContainer>

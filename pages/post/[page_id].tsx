@@ -62,7 +62,6 @@ const Post = (props: Props) => {
             <div className={style.meta_wrapper}>
               <div className={style.time_wrapper}>
                 <div>{new Date(page.created_time).toLocaleString()} 작성</div>
-                <div>{new Date(page.created_time).toLocaleString()} 수정</div>
               </div>
             </div>
             <MentorSummaryBox
