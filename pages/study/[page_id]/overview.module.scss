@@ -22,5 +22,17 @@
       padding-bottom: 50px;
       border-bottom: 1px solid var(--gray100);
     }
+
+    .post_wrapper {
+      border-bottom: 1px solid var(--gray100);
+      margin-bottom: 50px;
+      padding-bottom: 50px;
+    }
+
+    .intro_wrapper {
+      background-color: rgb(245, 245, 245);
+      padding: 20px;
+      border-radius: 5px;
+    }
   }
 }

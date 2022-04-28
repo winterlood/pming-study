@@ -12,6 +12,10 @@ import React from "react";
 import style from "./overview.module.scss";
 import PostItemList from "components/Common/PostItemList";
 import MentorSummaryBox from "components/Common/MentorSummaryBox";
+import { getPageBlocks } from "lib/server/get-page-blocks";
+import { ExtendedRecordMap } from "notion-types";
+import Section from "components/Study/Section";
+import BlockRenderer from "components/Common/BlockRenderer";
 
 // ANTD
 
@@ -25,13 +29,14 @@ interface Props {
   page: app_types.ProcessedPageWithStudy;
   lastFetch: string;
   postList: app_types.ProcessedPageWithStudyPostWithRelatedStudy[];
+  blocks: ExtendedRecordMap;
   ogImageUrl: string;
 }
 
 // COMPONENT
 
 const Overview = (props: Props) => {
-  const { page, lastFetch, postList } = props;
+  const { page, blocks, lastFetch, postList } = props;
 
   const router = useRouter();
 
@@ -73,6 +78,14 @@ const Overview = (props: Props) => {
             <h3>스터디 포스트</h3>
             <PostItemList postList={postList} />
           </section>
+
+          <section className={style.intro_wrapper}>
+            <BlockRenderer
+              pageId={page.id}
+              blocks={blocks}
+              lastFetch={lastFetch}
+            />
+          </section>
         </div>
       </div>
     </PaddingContainer>
@@ -91,9 +104,10 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx) => {
   const { page_id } = ctx.params;
 
-  const [page, postList] = await Promise.all([
+  const [page, postList, blocks] = await Promise.all([
     API_GetStudyPage(page_id),
     API_GetProcessedPostPageListByStudy(page_id),
+    getPageBlocks(page_id),
   ]);
 
   if (page.study_status in ["OPEN", "READY"]) {
@@ -109,6 +123,7 @@ export const getStaticProps = async (ctx) => {
     props: {
       page: page,
       postList: postList.map((it) => ({ ...it, related_study: page })),
+      blocks,
       ogImageUrl,
     },
     revalidate: 30,
